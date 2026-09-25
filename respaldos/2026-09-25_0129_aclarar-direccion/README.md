@@ -94,8 +94,9 @@ archivo y la próxima vez el script te lo vuelve a pedir.
 
 La primera vez tarda un poco más porque descarga la herramienta de Cloudflare.
 
-La dirección de la web es **https://burgercouple-web.pages.dev**. Esa es la
-que se comparte. Ojo con la que tiene un código al principio (ver trampa 1 bis).
+La dirección va a ser **https://burgercouple-web.pages.dev**. Si ese nombre
+ya estuviera tomado por otra persona en Cloudflare, le agregan unas letras al
+final; el script te muestra la dirección exacta.
 
 ---
 
@@ -182,15 +183,6 @@ actualiza una de las dos y la otra queda congelada en una versión vieja.
   muestren la misma versión. Si una quedó vieja, te avisa con ⚠️ en vez de
   decir ✅.
 La dirección que se comparte es siempre la **sin** `main.` adelante.
-
-**1 bis. La tercera dirección: la "foto fija" de cada publicación.**
-Además, cada vez que publicás, Cloudflare crea una dirección con un código
-al principio, por ejemplo `e3590b06.burgercouple-web.pages.dev`, y la muestra
-en la ventana mientras publica. **Esa dirección queda congelada para siempre
-en esa versión.** Sirve para comparar versiones viejas, pero **nunca se
-comparte**. La primera publicación (25/09/2026) quedó en
-`e3590b06.burgercouple-web.pages.dev`. El mensaje final del script ahora lo
-avisa.
 
 **2. El token puede tocar todos los proyectos de la cuenta, incluido BC OS.**
 Cloudflare no deja limitar un token a un solo proyecto de Pages. Por eso el

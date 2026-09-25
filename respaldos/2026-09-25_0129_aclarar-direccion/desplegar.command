@@ -243,13 +243,6 @@ if [ "$OK_PRINCIPAL" = 1 ] && [ "$OK_RAMA" = 1 ]; then
   echo
   echo "     $PRINCIPAL        ← esta es la que se comparte"
   echo "     $RAMA_URL   (copia técnica, igual a la de arriba)"
-  echo
-  # Cloudflare imprime más arriba otra dirección con un código al principio
-  # (tipo e3590b06.$DIRECCION). Esa es una foto fija de esta publicación y
-  # queda congelada para siempre: ya pasó que se compartió por error.
-  echo "   OJO: más arriba Cloudflare muestra otra dirección con letras y números"
-  echo "   al principio (tipo abc12345.$DIRECCION). Esa es una foto fija de esta"
-  echo "   versión y NO se actualiza. No la compartas: usá la de la flecha."
   echo "================================================"
   command -v open >/dev/null 2>&1 && [ "$(uname)" = "Darwin" ] && open "$PRINCIPAL"
   pausa_y_salir 0
