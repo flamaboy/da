@@ -144,19 +144,8 @@
   <!-- ============ MENÚ ============ -->
   <section id="menu" class="seccion seccion--crema" aria-labelledby="titulo-menu">
     <div class="contenedor">
-      <!--
-        Las ilustraciones de la carta van como "figuritas" en círculos de color,
-        al costado de los títulos. Antes estaban juntas en una franja propia
-        ("Canal Fetiche"); Mati prefirió repartirlas para que decoren toda la página.
-        Son decorativas: no tapan textos ni botones y los lectores de pantalla las saltean.
-      -->
-      <div class="encabezado">
-        <div>
-          <p class="rotulo rotulo--oscuro">El menú</p>
-          <h2 id="titulo-menu" class="titulo-seccion">Los ejemplares</h2>
-        </div>
-        <span class="deco deco--rosa" aria-hidden="true"><img src="/imagenes/ilus-diva.webp" alt="" width="181" height="374" loading="lazy"></span>
-      </div>
+      <p class="rotulo rotulo--oscuro">El menú</p>
+      <h2 id="titulo-menu" class="titulo-seccion">Los ejemplares</h2>
       <!--
         Sin precios a propósito: cambian seguido y un precio viejo en la web genera
         reclamos. El precio vive en Rappi y en la carta del local, que se actualizan solos.
@@ -203,7 +192,7 @@
         </li>
       </ul>
 
-      <h3 class="subtitulo"><span>Especiales <small>El tamaño no importa, dijo Jacobo</small></span> <span class="deco deco--amarillo" aria-hidden="true"><img src="/imagenes/ilus-megafono.webp" alt="" width="290" height="208" loading="lazy"></span></h3>
+      <h3 class="subtitulo">Especiales <small>El tamaño no importa, dijo Jacobo</small></h3>
       <p class="nota">Vienen con papas fritas. No admiten extras; sí se pueden sacar ingredientes.</p>
       <ul class="grilla-burgers">
         <li class="burger burger--sin-foto"><h4 class="burger__nombre">Tomasito</h4><p class="burger__desc">Cheddar, pulled pork, cebolla caramelizada y salsa La Chechona.</p></li>
@@ -213,7 +202,7 @@
         <li class="burger burger--sin-foto"><h4 class="burger__nombre">Gala Burger</h4><p class="burger__desc">Pan Pelo Crocante, carne crunch de 80 g, cheddar, Pussy cebolla, manteca con chips de bacon y salsa Vergüenza Ajena (miel especiada).</p></li>
       </ul>
 
-      <h3 class="subtitulo"><span>Veggies y veganas</span> <span class="deco deco--naranja" aria-hidden="true"><img src="/imagenes/ilus-hincha.webp" alt="" width="402" height="470" loading="lazy"></span></h3>
+      <h3 class="subtitulo">Veggies y veganas</h3>
       <p class="nota">Opción vegana: con pan, cheddar y salsa veganos.</p>
       <ul class="grilla-burgers">
         <li class="burger">
@@ -270,6 +259,30 @@
     </div>
   </section>
 
+  <!-- ============ CANAL FETICHE ============ -->
+  <!--
+    La franja de cultura pop: las ilustraciones en duotono de las cartas, presentadas
+    como una grilla de canales de televisión (el concepto "Canal Fetiche" del PDF).
+    Van sin nombres a propósito: Mati pidió usar las ilustraciones tal cual están en la carta.
+    Las imágenes son decorativas (alt vacío), así los lectores de pantalla no leen ruido.
+  -->
+  <section class="canal" aria-labelledby="titulo-canal">
+    <div class="damero damero--turquesa" aria-hidden="true"></div>
+    <div class="contenedor">
+      <p class="rotulo">Canal Fetiche</p>
+      <h2 id="titulo-canal" class="titulo-seccion titulo-seccion--claro">Farándula, memes y nostalgia, entre dos panes</h2>
+      <p class="seccion__bajada seccion__bajada--claro">Un canal de televisión porteño perdido dentro de una hamburguesería. Cada burger tiene nombre de leyenda.</p>
+      <ul class="canales">
+        <li class="canales__item canales__item--rosa"><span class="canales__numero">CH 01</span><img src="/imagenes/ilus-diva.webp" alt="" width="181" height="374" loading="lazy"></li>
+        <li class="canales__item canales__item--turquesa"><span class="canales__numero">CH 02</span><img src="/imagenes/ilus-anteojos.webp" alt="" width="236" height="328" loading="lazy"></li>
+        <li class="canales__item canales__item--amarillo"><span class="canales__numero">CH 03</span><img src="/imagenes/ilus-megafono.webp" alt="" width="290" height="208" loading="lazy"></li>
+        <li class="canales__item canales__item--violeta"><span class="canales__numero">CH 04</span><img src="/imagenes/ilus-duo.webp" alt="" width="390" height="243" loading="lazy"></li>
+        <li class="canales__item canales__item--naranja"><span class="canales__numero">CH 05</span><img src="/imagenes/ilus-hincha.webp" alt="" width="402" height="470" loading="lazy"></li>
+        <li class="canales__item canales__item--rosa"><span class="canales__numero">CH 06</span><img src="/imagenes/ilus-grupo.webp" alt="" width="489" height="326" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ============ LOCALES ============ -->
   <!--
     Cada local tiene su color, igual que su carta impresa (La Mansión violeta,
@@ -279,13 +292,8 @@
   -->
   <section id="locales" class="seccion" aria-labelledby="titulo-locales">
     <div class="contenedor">
-      <div class="encabezado">
-        <div>
-          <p class="rotulo rotulo--oscuro">Locales</p>
-          <h2 id="titulo-locales" class="titulo-seccion">Elegí dónde alimentar tu obsesión</h2>
-        </div>
-        <span class="deco deco--turquesa" aria-hidden="true"><img src="/imagenes/ilus-anteojos.webp" alt="" width="236" height="328" loading="lazy"></span>
-      </div>
+      <p class="rotulo rotulo--oscuro">Locales</p>
+      <h2 id="titulo-locales" class="titulo-seccion">Elegí dónde alimentar tu obsesión</h2>
       <ul class="locales">
 
         <li class="local local--violeta">
@@ -360,13 +368,8 @@
   <section id="historia" class="seccion seccion--violeta" aria-labelledby="titulo-historia">
     <div class="contenedor historia">
       <div class="historia__intro">
-        <div class="encabezado">
-          <div>
-            <p class="rotulo rotulo--oscuro">Historia</p>
-            <h2 id="titulo-historia" class="titulo-seccion">De reseñar burgers a construir un universo</h2>
-          </div>
-          <span class="deco deco--amarillo" aria-hidden="true"><img src="/imagenes/ilus-duo.webp" alt="" width="390" height="243" loading="lazy"></span>
-        </div>
+        <p class="rotulo rotulo--oscuro">Historia</p>
+        <h2 id="titulo-historia" class="titulo-seccion">De reseñar burgers a construir un universo</h2>
         <p>Burger Couple es Víctor y Dana. Él es la parte lanzada; ella, la que le pone marco a las ideas. El nombre no es un invento publicitario: la pareja es el origen, el método y el relato.</p>
         <!--
           Sin foto a propósito: ninguna ilustración de la carta es seguro que sea Víctor,
@@ -413,7 +416,6 @@
       <p class="pie__titulo">Contacto</p>
       <p><span class="pendiente pendiente--claro">A confirmar</span></p>
     </div>
-    <span class="deco deco--rosa" aria-hidden="true"><img src="/imagenes/ilus-grupo.webp" alt="" width="489" height="326" loading="lazy"></span>
   </div>
   <p class="contenedor pie__legal">© 2026 Burger Couple · Buenos Aires, Argentina · Precios y disponibilidad en Rappi y en cada local.</p>
 </footer>

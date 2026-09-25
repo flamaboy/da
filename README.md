@@ -4,7 +4,7 @@ La página pública de Burger Couple. Este archivo está escrito para Mati, no
 para un programador: explica qué hace la web, cómo se publica, qué decidimos
 y por qué, qué falta y qué trampas conocidas tiene.
 
-_Última actualización: 25/09/2026, primera versión._
+_Última actualización: 25/09/2026._
 
 ---
 
@@ -20,13 +20,15 @@ Es una sola página, larga, pensada primero para el celular. De arriba abajo:
    copiados de la carta de junio de 2026. **Sin precios** (ver decisiones).
    También la Box, el menú almuerzo, las entradas y el Menú La Bendi, y un
    aviso de alérgenos.
-4. **Canal Fetiche**: las ilustraciones en duotono de las cartas, presentadas
-   como una grilla de canales de TV.
-5. **Locales**: los cinco, cada uno con su color, su dirección y un botón
+4. **Locales**: los cinco, cada uno con su color, su dirección y un botón
    *Cómo llegar* que abre Google Maps. Recoleta figura como cerrado por
    refacciones. Boedo figura como abierto, con la etiqueta "Nuevo".
-6. **Historia**: Víctor y Dana, Loco Piña y la línea de tiempo desde 2017.
-7. **Pie**: redes sociales.
+5. **Historia**: Víctor y Dana, Loco Piña y la línea de tiempo desde 2017.
+6. **Pie**: redes sociales.
+
+Las **ilustraciones en duotono** de las cartas están repartidas por la página
+como "figuritas" en círculos de color, al lado de los títulos (Menú,
+Especiales, Veggies, Locales, Historia y pie).
 
 Además tiene:
 - **Página de error** ("Loco Piña se comió esta página"), que aparece si
@@ -133,6 +135,7 @@ y el token nunca salen a internet.
 | **Logo sacado de las cartas en PDF** | Viene en vector (no se pixela). No es el archivo maestro del diseñador, pero es el mismo dibujo. |
 | **Cada local con su color** | Como sus cartas: La Mansión violeta, La Tercera celeste, Los 90's naranja. Boedo (turquesa) y Recoleta (amarillo) todavía no tienen carta: los elegimos de la paleta. |
 | **Ilustraciones de famosos sin nombres** | Se usan las de las cartas, tal cual, a pedido de Mati. |
+| **Ilustraciones como figuritas repartidas, no en una franja aparte** | Mati prefirió que decoren toda la página. Van en círculos (el motivo "duotono" del PDF) que las recortan, así nunca tapan textos ni botones. |
 | **Loco Piña sin foto** | Ninguna ilustración de la carta es seguro que sea Víctor. Cuando haya una foto aprobada, se agrega. |
 | **Tipografías servidas desde nuestra web** | Evita conectarse a Google Fonts: con mala señal, cada conexión de más se nota. |
 | **Nada de JavaScript** | La página no necesita ningún programa para funcionar: carga más rápido y anda en cualquier celular. |
@@ -220,3 +223,7 @@ Antes de cada tanda de cambios, Claude copia lo que va a tocar a
   Fetiche e historia; script de publicación con la verificación de las dos
   direcciones. Se borró el portfolio personal que había en la carpeta (a
   pedido de Mati; se puede recuperar del historial de GitHub).
+- **25/09/2026**: primera publicación, hecha por Mati desde su Mac.
+- **25/09/2026**: se sacó la franja "Canal Fetiche"; sus seis ilustraciones
+  quedaron repartidas por la página como figuritas. Respaldo en
+  `respaldos/2026-09-25_*_quitar-canal-fetiche/`.

@@ -148,6 +148,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background-color: var(--violeta-profundo);
   background-image: conic-gradient(var(--rosa) 25%, transparent 0 50%, var(--rosa) 0 75%, transparent 0);
 }
+.damero--turquesa {
+  background-color: var(--rosa);
+  background-image: conic-gradient(var(--turquesa) 25%, transparent 0 50%, var(--turquesa) 0 75%, transparent 0);
+}
 .estallido { fill: var(--amarillo); }
 
 /* ---------- Encabezado ---------- */
@@ -240,27 +244,26 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 12px; padding: 16px 18px; font-size: .95rem;
 }
 
-/* ---------- Figuritas decorativas ---------- */
-/*
-  Cada ilustración va recortada dentro de un círculo de color: es el motivo
-  "duotono" del PDF de marca (personaje + círculo). El círculo recorta la
-  imagen, así la figura nunca se sale de su lugar ni tapa texto.
-*/
-.encabezado { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.deco {
-  flex: none; display: flex; align-items: flex-end; justify-content: center;
-  width: 92px; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
-  border: 3px solid var(--negro); margin-bottom: 14px;
+/* ---------- Canal Fetiche ---------- */
+.canal { background: var(--violeta-profundo); padding-bottom: 56px; }
+.canal .contenedor { padding-top: 48px; }
+.canales { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.canales__item {
+  position: relative; border-radius: var(--radio); aspect-ratio: 1; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+  border: 3px solid var(--negro);
 }
-.deco img { width: 88%; height: 92%; object-fit: contain; object-position: center bottom; }
-.subtitulo .deco { width: 64px; margin: 0 0 0 auto; }
-.subtitulo { justify-content: space-between; flex-wrap: nowrap; align-items: flex-end; }
-.subtitulo > span:first-child { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
-.deco--rosa { background: var(--rosa); }
-.deco--turquesa { background: var(--turquesa); }
-.deco--amarillo { background: var(--amarillo); }
-.deco--naranja { background: var(--naranja); }
-.pie .deco { width: 120px; justify-self: end; }
+.canales__item img { max-height: 92%; width: auto; object-fit: contain; }
+.canales__numero {
+  position: absolute; top: 10px; left: 10px; z-index: 1;
+  font-family: var(--letra-datos); font-size: .75rem; background: var(--negro); color: var(--crema);
+  padding: 3px 8px; border-radius: 6px;
+}
+.canales__item--rosa { background: var(--rosa); }
+.canales__item--turquesa { background: var(--turquesa); }
+.canales__item--amarillo { background: var(--amarillo); }
+.canales__item--violeta { background: var(--violeta); }
+.canales__item--naranja { background: var(--naranja); }
 
 /* ---------- Locales ---------- */
 .locales { display: grid; gap: 16px; }
@@ -304,7 +307,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- Pie ---------- */
 .pie { background: var(--negro); color: var(--crema); padding-bottom: 28px; }
 .pie__grilla { display: grid; gap: 24px; padding-top: 36px; padding-bottom: 24px; }
-.pie__grilla > img { width: 140px; }
+.pie__grilla img { width: 140px; }
 .pie__titulo { font-family: var(--letra-datos); text-transform: uppercase; font-size: .8rem; color: var(--amarillo); margin-bottom: 8px; }
 .pie__redes li { margin-bottom: 4px; }
 .pie__redes a { display: inline-block; padding: 6px 0; }
@@ -316,10 +319,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .cabecera__nav { gap: 12px; }
   .grilla-burgers { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .menu-extra { grid-template-columns: repeat(2, 1fr); }
-  .deco { width: 140px; }
-  .subtitulo .deco { width: 96px; }
+  .canales { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .locales { grid-template-columns: repeat(2, 1fr); }
-  .pie__grilla { grid-template-columns: auto 1fr 1fr auto; align-items: start; }
+  .pie__grilla { grid-template-columns: auto 1fr 1fr; align-items: start; }
 }
 
 /* ---------- Computadora (desde 1000 px) ---------- */
@@ -331,8 +333,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .portada__estallido { width: 170px; right: -10px; }
   .portada__burger { width: 136px; top: 44px; right: 7px; }
   .grilla-burgers { grid-template-columns: repeat(4, 1fr); }
-  .deco { width: 180px; }
-  .pie .deco { width: 150px; }
+  .canales { grid-template-columns: repeat(6, 1fr); }
+  .canales__item { aspect-ratio: 3 / 4; }
   .locales { grid-template-columns: repeat(3, 1fr); }
   .historia { grid-template-columns: 1fr 1fr; align-items: start; }
   .seccion { padding: 80px 0; }
