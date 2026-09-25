@@ -1,0 +1,16 @@
+# Token de Cloudflare: privado, nunca se sube a GitHub ni se publica.
+.cloudflare-credenciales
+# Cualquier otro archivo de secretos que aparezca en el futuro.
+*.token
+.env
+.env.*
+
+# Historial local de publicaciones (lo escribe desplegar.command en tu Mac).
+publicaciones.log
+
+# Carpetas de trabajo que crea la herramienta de Cloudflare.
+.wrangler/
+node_modules/
+
+# Basura que crea la Mac en cada carpeta.
+.DS_Store

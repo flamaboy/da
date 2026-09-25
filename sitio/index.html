@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  Título y descripción: es lo que muestra Google en el resultado de búsqueda.
+  Nombramos los cinco barrios a propósito, porque la gente busca
+  "hamburguesas + barrio" y Google premia que la página lo diga con todas las letras.
+-->
+<title>Burger Couple · Hamburguesas smash en Caballito, Belgrano, Palermo, Boedo y Recoleta</title>
+<meta name="description" content="Burgers para fetichistas. Hamburguesas smash en Caballito, Belgrano, Palermo Soho, Boedo y Recoleta, Buenos Aires. Mirá el menú, encontrá tu local y pedí por Rappi.">
+<meta name="theme-color" content="#141116">
+
+<!--
+  Las palabras en mayúscula entre dobles guiones bajos son marcadores: el script
+  desplegar.command las reemplaza al publicar por la dirección real y la fecha.
+  Están así porque la dirección exacta la decide Cloudflare cuando se crea el
+  proyecto, y no queremos escribirla a mano en diez lugares distintos.
+-->
+<link rel="canonical" href="https://__DIRECCION__/">
+<meta name="version-publicada" content="__VERSION__">
+
+<!-- Open Graph: lo que se ve cuando alguien comparte el link por WhatsApp o Instagram. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Burger Couple">
+<meta property="og:title" content="Burger Couple · Burgers para fetichistas">
+<meta property="og:description" content="Hamburguesas smash en Caballito, Belgrano, Palermo Soho, Boedo y Recoleta. Menú, locales y pedidos.">
+<meta property="og:url" content="https://__DIRECCION__/">
+<meta property="og:image" content="https://__DIRECCION__/imagenes/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de Burger Couple con la frase Burgers para fetichistas">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/imagenes/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/imagenes/icono-180.png">
+
+<!--
+  Precargamos solo las dos tipografías que se ven apenas abre la página.
+  Con mala señal, cada archivo que se pide de más demora la primera pantalla.
+-->
+<link rel="preload" href="/fuentes/erica-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fuentes/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/estilos.css">
+
+<!--
+  Datos estructurados: le dicen a Google, en su idioma, que esto es un grupo de
+  restaurantes con cinco direcciones. Sirve para aparecer en búsquedas por barrio.
+  Horarios y teléfonos NO van hasta que estén confirmados: si le damos a Google
+  un dato falso, lo muestra en grande y es peor que no dar nada.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Burger Couple",
+  "slogan": "Burgers para fetichistas",
+  "url": "https://__DIRECCION__/",
+  "logo": "https://__DIRECCION__/imagenes/icono-180.png",
+  "sameAs": [
+    "https://www.instagram.com/burgercouple.co/",
+    "https://www.instagram.com/locopinia/",
+    "https://www.youtube.com/@locopinia"
+  ],
+  "department": [
+    {"@type": "Restaurant", "name": "Burger Couple La Mansión", "servesCuisine": "Hamburguesas",
+     "address": {"@type": "PostalAddress", "streetAddress": "Hualfín 894", "addressLocality": "Caballito, Ciudad Autónoma de Buenos Aires", "addressCountry": "AR"}},
+    {"@type": "Restaurant", "name": "Burger Couple La Tercera", "servesCuisine": "Hamburguesas",
+     "address": {"@type": "PostalAddress", "streetAddress": "Zapiola 2115", "addressLocality": "Belgrano, Ciudad Autónoma de Buenos Aires", "addressCountry": "AR"}},
+    {"@type": "Restaurant", "name": "Burger Couple Los 90's", "servesCuisine": "Hamburguesas",
+     "address": {"@type": "PostalAddress", "streetAddress": "Honduras 5221", "addressLocality": "Palermo Soho, Ciudad Autónoma de Buenos Aires", "addressCountry": "AR"}},
+    {"@type": "Restaurant", "name": "Burger Couple Boedo", "servesCuisine": "Hamburguesas",
+     "address": {"@type": "PostalAddress", "addressLocality": "Boedo, Ciudad Autónoma de Buenos Aires", "addressCountry": "AR"}},
+    {"@type": "Restaurant", "name": "Burger Couple Recoleta Express", "servesCuisine": "Hamburguesas",
+     "address": {"@type": "PostalAddress", "streetAddress": "Agüero 2092", "addressLocality": "Recoleta, Ciudad Autónoma de Buenos Aires", "addressCountry": "AR"}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="saltar" href="#menu">Saltar al menú</a>
+
+<header class="cabecera">
+  <div class="cabecera__fila">
+    <a class="cabecera__logo" href="#inicio" aria-label="Burger Couple, volver al inicio">
+      <img src="/imagenes/logo-burger-couple.svg" alt="Burger Couple" width="120" height="68">
+    </a>
+    <!-- Navegación que sugiere el PDF de marca, sin CLUB porque el club va en la etapa 2. -->
+    <nav class="cabecera__nav" aria-label="Secciones">
+      <a href="#menu">Menú</a>
+      <a href="#locales">Locales</a>
+      <a href="#historia">Historia</a>
+    </nav>
+    <a class="boton boton--rosa boton--chico" href="#locales">Pedir</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ============ PORTADA ============ -->
+  <section class="portada" aria-labelledby="titulo-portada">
+    <div class="damero damero--rosa" aria-hidden="true"></div>
+    <div class="contenedor portada__grilla">
+      <div class="portada__texto">
+        <p class="rotulo">Canal Fetiche · En vivo desde 2020</p>
+        <h1 id="titulo-portada" class="portada__titulo">Burgers para <span>fetichistas</span></h1>
+        <p class="portada__bajada">Smash burgers en Caballito, Belgrano, Palermo Soho, Boedo y Recoleta. Producto serio, relato delirante.</p>
+        <div class="portada__acciones">
+          <a class="boton boton--amarillo" href="#menu">Ver los ejemplares</a>
+          <a class="boton boton--contorno" href="#locales">Pedir por Rappi</a>
+        </div>
+      </div>
+      <div class="portada__arte" aria-hidden="true">
+        <!--
+          Ilustración de la carta de Los 90's, adentro de un marco turquesa que
+          imita una pantalla de televisión. El marco es necesario: el traje negro de
+          la ilustración se perdía contra el fondo negro de la portada.
+          Va esta y no una foto de hamburguesa porque es la imagen más grande que
+          tenemos (720 px); las fotos de la carta son chicas y en grande se verían
+          borrosas. Cuando lleguen las fotos originales, se puede reconsiderar.
+        -->
+        <div class="portada__pantalla">
+          <img class="portada__ilus" src="/imagenes/ilus-brindis.webp" alt="" width="720" height="801" fetchpriority="high">
+        </div>
+        <svg class="estallido portada__estallido" viewBox="0 0 100 100"><use href="#forma-estallido"/></svg>
+        <img class="portada__burger" src="/imagenes/burger-cheese.webp" alt="" width="233" height="141">
+      </div>
+    </div>
+  </section>
+
+  <!--
+    Cinta que se mueve como zócalo de televisión. Es el "zapping porteño" del PDF.
+    Si el celular tiene activado "reducir movimiento", queda quieta (ver estilos.css).
+  -->
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta__pista">
+      <span>La burger te está mirando</span><span>★</span><span>Burgers para fetichistas</span><span>★</span><span>Vení a darle un besito a lo más fiel que tenés</span><span>★</span>
+      <span>La burger te está mirando</span><span>★</span><span>Burgers para fetichistas</span><span>★</span><span>Vení a darle un besito a lo más fiel que tenés</span><span>★</span>
+    </div>
+  </div>
+
+  <!-- ============ MENÚ ============ -->
+  <section id="menu" class="seccion seccion--crema" aria-labelledby="titulo-menu">
+    <div class="contenedor">
+      <p class="rotulo rotulo--oscuro">El menú</p>
+      <h2 id="titulo-menu" class="titulo-seccion">Los ejemplares</h2>
+      <!--
+        Sin precios a propósito: cambian seguido y un precio viejo en la web genera
+        reclamos. El precio vive en Rappi y en la carta del local, que se actualizan solos.
+      -->
+      <p class="seccion__bajada">Todas vienen con el mejor pan de papa, carne de 120 g y papas fritas. Precios actualizados en Rappi y en la carta de cada local.</p>
+
+      <h3 class="subtitulo">Los patices</h3>
+      <ul class="grilla-burgers">
+        <li class="burger">
+          <img class="burger__foto" src="/imagenes/burger-cheese.webp" alt="Hamburguesa Cheese" width="233" height="141" loading="lazy">
+          <h4 class="burger__nombre">Cheese</h4>
+          <p class="burger__desc">Mucho cheddar.</p>
+        </li>
+        <li class="burger">
+          <img class="burger__foto" src="/imagenes/burger-cuarto-de-frula.webp" alt="Hamburguesa Cuarto de Frula" width="200" height="145" loading="lazy">
+          <h4 class="burger__nombre">Cuarto de Frula</h4>
+          <p class="burger__desc">Mucho cheddar, cebollita picada, mostaza y ketchup.</p>
+        </li>
+        <li class="burger">
+          <img class="burger__foto" src="/imagenes/burger-la-rikita.webp" alt="Hamburguesa La Rikita" width="205" height="145" loading="lazy">
+          <h4 class="burger__nombre">La Rikita</h4>
+          <p class="burger__desc">Cheddar, lechuga, cebolla picada, pepinos y salsa Big M (se la copiamos a Ronald).</p>
+        </li>
+        <li class="burger">
+          <img class="burger__foto" src="/imagenes/burger-campera-del-tio.webp" alt="Hamburguesa Campera del Tío" width="193" height="162" loading="lazy">
+          <h4 class="burger__nombre">Campera del Tío</h4>
+          <p class="burger__desc">Cheddar, lechuga, tomate, cebolla morada y salsa Mil Islas (mezcla perfecta de mayo, ketchup y mostaza con otras cositas).</p>
+        </li>
+        <li class="burger burger--sin-foto">
+          <h4 class="burger__nombre">Burger Couple R</h4>
+          <p class="burger__desc">Cheddar, bacon, lechuga, tomate, cebolla crispy y salsa Comandante.</p>
+        </li>
+        <li class="burger burger--sin-foto">
+          <h4 class="burger__nombre">Guido Su</h4>
+          <p class="burger__desc">Cheddar, bacon, pepinos y alioli.</p>
+        </li>
+        <li class="burger burger--sin-foto">
+          <h4 class="burger__nombre">Porcel Jr</h4>
+          <p class="burger__desc">Cheddar, bacon, cebolla crispy y salsa Tres Put4as (mayo, ketchup, sriracha y chipotle, apenas picante).</p>
+        </li>
+        <li class="burger burger--sin-foto">
+          <h4 class="burger__nombre">Comandante</h4>
+          <p class="burger__desc">Cheddar, bacon x 4 y salsa Rolls Royce Ahumada (el secreto mejor guardado del chocolatero, te va a encantar).</p>
+        </li>
+      </ul>
+
+      <h3 class="subtitulo">Especiales <small>El tamaño no importa, dijo Jacobo</small></h3>
+      <p class="nota">Vienen con papas fritas. No admiten extras; sí se pueden sacar ingredientes.</p>
+      <ul class="grilla-burgers">
+        <li class="burger burger--sin-foto"><h4 class="burger__nombre">Tomasito</h4><p class="burger__desc">Cheddar, pulled pork, cebolla caramelizada y salsa La Chechona.</p></li>
+        <li class="burger burger--sin-foto"><h4 class="burger__nombre">Mauro Viale</h4><p class="burger__desc">Provoleta Nonna Pia, cebolla caramelizada, hongos y salsa dijonesa (mayo con mostaza Dijon).</p></li>
+        <li class="burger burger--sin-foto"><h4 class="burger__nombre">Jugosa Como Esa</h4><p class="burger__desc">Queso azul, peras caramelizadas, rúcula, nueces y miel especiada.</p></li>
+        <li class="burger burger--sin-foto"><h4 class="burger__nombre">Deboramelt-Trozo</h4><p class="burger__desc">Pan de molde, carne de 120 g smash cocinada con cebolla, cheddar, chips de bacon y salsa 2.000 Islas (mayo, mostaza Dijon y ketchup).</p></li>
+        <li class="burger burger--sin-foto"><h4 class="burger__nombre">Gala Burger</h4><p class="burger__desc">Pan Pelo Crocante, carne crunch de 80 g, cheddar, Pussy cebolla, manteca con chips de bacon y salsa Vergüenza Ajena (miel especiada).</p></li>
+      </ul>
+
+      <h3 class="subtitulo">Veggies y veganas</h3>
+      <p class="nota">Opción vegana: con pan, cheddar y salsa veganos.</p>
+      <ul class="grilla-burgers">
+        <li class="burger">
+          <img class="burger__foto" src="/imagenes/burger-alien-de-chiche.webp" alt="Hamburguesa Alien de Chiche" width="194" height="147" loading="lazy">
+          <h4 class="burger__nombre">Alien de Chiche</h4>
+          <p class="burger__desc">Medallón vegano, mucho cheddar, cebollita picada, mostaza y ketchup.</p>
+        </li>
+        <li class="burger">
+          <img class="burger__foto" src="/imagenes/burger-simon-mi-familia-es-jurio.webp" alt="Hamburguesa Simón mi familia es jurío" width="200" height="154" loading="lazy">
+          <h4 class="burger__nombre">Simón mi familia es jurío</h4>
+          <p class="burger__desc">Medallón vegano, cheddar, lechuga, tomate, cebolla morada y salsa Mil Islas.</p>
+        </li>
+        <li class="burger burger--sin-foto">
+          <h4 class="burger__nombre">Karina Olga</h4>
+          <p class="burger__desc">Medallón vegano, provoleta, chips de hongos portobello, aceite de rúcula, tomate, cebolla crispy y alioli.</p>
+        </li>
+      </ul>
+
+      <div class="menu-extra">
+        <div class="tarjeta tarjeta--rosa">
+          <img class="tarjeta__imagen" src="/imagenes/box-logo.webp" alt="The Burger Couple Box" width="440" height="372" loading="lazy">
+          <h3 class="tarjeta__titulo">The Burger Couple Box</h3>
+          <p>Burger + papas + aros de cebolla + muñeco random (no se puede elegir). Con Cheese, Burger Couple R o Campera del Tío. También podés hacerla vegana o vegetariana.</p>
+        </div>
+        <div class="tarjeta tarjeta--turquesa">
+          <h3 class="tarjeta__titulo">Menú almuerzo</h3>
+          <!-- Condiciones copiadas literal de la carta: con reglas de promo no se hace humor. -->
+          <p>Hamburguesa + papas + agua o gaseosa. De lunes a viernes de 12 a 18 h.</p>
+          <p class="tarjeta__letra-chica">Solo para consumo en el salón y pagando en efectivo. No disponible los feriados. No acumulable con otras promociones.</p>
+        </div>
+        <div class="tarjeta tarjeta--amarillo">
+          <h3 class="tarjeta__titulo">Entradas</h3>
+          <p>Papas fritas con el polvito secreto del Loco Piña · Papas Mitch · Muñuelos de verdura · Gladys de provoleta · Aros de cebolla · Chicken fingers · Vegan chicken sticks.</p>
+        </div>
+        <div class="tarjeta tarjeta--violeta">
+          <h3 class="tarjeta__titulo">Menú La Bendi</h3>
+          <p>Tostado de queso, chicken fingers o cheese simple, con papas y bebida sin alcohol. Solo para menores de 10 años, dedicado a las mamis luchonas.</p>
+        </div>
+      </div>
+      <p class="nota nota--centro">Además: ensalada Caesar, postres, limonadas, birras y tragos.</p>
+
+      <!--
+        Alérgenos: texto literal y sin chistes, como pide el PDF de marca.
+        Todavía no tenemos la información producto por producto; cuando la tengamos,
+        este aviso se reemplaza por el detalle en cada hamburguesa.
+      -->
+      <aside class="aviso" aria-label="Información sobre alérgenos">
+        <strong>Alergias e intolerancias.</strong> Si tenés alguna alergia o intolerancia alimentaria, consultá en el local antes de pedir. Todavía no publicamos la información de alérgenos de cada producto.
+      </aside>
+
+      <div class="centrado">
+        <a class="boton boton--negro" href="#locales">Ver precios y pedir en Rappi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CANAL FETICHE ============ -->
+  <!--
+    La franja de cultura pop: las ilustraciones en duotono de las cartas, presentadas
+    como una grilla de canales de televisión (el concepto "Canal Fetiche" del PDF).
+    Van sin nombres a propósito: Mati pidió usar las ilustraciones tal cual están en la carta.
+    Las imágenes son decorativas (alt vacío), así los lectores de pantalla no leen ruido.
+  -->
+  <section class="canal" aria-labelledby="titulo-canal">
+    <div class="damero damero--turquesa" aria-hidden="true"></div>
+    <div class="contenedor">
+      <p class="rotulo">Canal Fetiche</p>
+      <h2 id="titulo-canal" class="titulo-seccion titulo-seccion--claro">Farándula, memes y nostalgia, entre dos panes</h2>
+      <p class="seccion__bajada seccion__bajada--claro">Un canal de televisión porteño perdido dentro de una hamburguesería. Cada burger tiene nombre de leyenda.</p>
+      <ul class="canales">
+        <li class="canales__item canales__item--rosa"><span class="canales__numero">CH 01</span><img src="/imagenes/ilus-diva.webp" alt="" width="181" height="374" loading="lazy"></li>
+        <li class="canales__item canales__item--turquesa"><span class="canales__numero">CH 02</span><img src="/imagenes/ilus-anteojos.webp" alt="" width="236" height="328" loading="lazy"></li>
+        <li class="canales__item canales__item--amarillo"><span class="canales__numero">CH 03</span><img src="/imagenes/ilus-megafono.webp" alt="" width="290" height="208" loading="lazy"></li>
+        <li class="canales__item canales__item--violeta"><span class="canales__numero">CH 04</span><img src="/imagenes/ilus-duo.webp" alt="" width="390" height="243" loading="lazy"></li>
+        <li class="canales__item canales__item--naranja"><span class="canales__numero">CH 05</span><img src="/imagenes/ilus-hincha.webp" alt="" width="402" height="470" loading="lazy"></li>
+        <li class="canales__item canales__item--rosa"><span class="canales__numero">CH 06</span><img src="/imagenes/ilus-grupo.webp" alt="" width="489" height="326" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ LOCALES ============ -->
+  <!--
+    Cada local tiene su color, igual que su carta impresa (La Mansión violeta,
+    La Tercera celeste, Los 90's naranja). Boedo y Recoleta todavía no tienen carta
+    propia: les asignamos turquesa y amarillo de la paleta de marca para que no se repitan.
+    Todo lo que dice "A confirmar" es un dato que todavía no tenemos: no se inventa.
+  -->
+  <section id="locales" class="seccion" aria-labelledby="titulo-locales">
+    <div class="contenedor">
+      <p class="rotulo rotulo--oscuro">Locales</p>
+      <h2 id="titulo-locales" class="titulo-seccion">Elegí dónde alimentar tu obsesión</h2>
+      <ul class="locales">
+
+        <li class="local local--violeta">
+          <img class="local__logo" src="/imagenes/logo-la-mansion.svg" alt="" width="160" height="116" loading="lazy">
+          <p class="local__barrio">Hamburguesas en Caballito</p>
+          <h3 class="local__nombre">La Mansión</h3>
+          <p class="local__direccion">Hualfín 894</p>
+          <p class="local__dato"><span>Horarios</span> <span class="pendiente">A confirmar</span></p>
+          <div class="local__acciones">
+            <a class="boton boton--negro boton--chico" href="https://www.google.com/maps/search/?api=1&amp;query=Burger%20Couple%20Hualf%C3%ADn%20894%20Caballito%20Buenos%20Aires" target="_blank" rel="noopener">Cómo llegar</a>
+            <span class="pendiente pendiente--boton">Rappi y reservas · a confirmar</span>
+          </div>
+        </li>
+
+        <li class="local local--celeste">
+          <img class="local__logo" src="/imagenes/logo-la-tercera.svg" alt="" width="160" height="130" loading="lazy">
+          <p class="local__barrio">Hamburguesas en Belgrano</p>
+          <h3 class="local__nombre">La Tercera</h3>
+          <p class="local__direccion">Zapiola 2115</p>
+          <p class="local__dato"><span>Horarios</span> <span class="pendiente">A confirmar</span></p>
+          <div class="local__acciones">
+            <a class="boton boton--negro boton--chico" href="https://www.google.com/maps/search/?api=1&amp;query=Burger%20Couple%20Zapiola%202115%20Belgrano%20Buenos%20Aires" target="_blank" rel="noopener">Cómo llegar</a>
+            <span class="pendiente pendiente--boton">Rappi y reservas · a confirmar</span>
+          </div>
+        </li>
+
+        <li class="local local--naranja">
+          <img class="local__logo" src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
+          <p class="local__barrio">Hamburguesas en Palermo Soho</p>
+          <h3 class="local__nombre">Los 90's</h3>
+          <p class="local__direccion">Honduras 5221</p>
+          <p class="local__dato"><span>Horarios</span> <span class="pendiente">A confirmar</span></p>
+          <div class="local__acciones">
+            <a class="boton boton--negro boton--chico" href="https://www.google.com/maps/search/?api=1&amp;query=Burger%20Couple%20Honduras%205221%20Palermo%20Buenos%20Aires" target="_blank" rel="noopener">Cómo llegar</a>
+            <span class="pendiente pendiente--boton">Rappi y reservas · a confirmar</span>
+          </div>
+        </li>
+
+        <!-- Boedo: local nuevo. Mati pidió mostrarlo como abierto aunque todavía no se inauguró oficialmente. -->
+        <li class="local local--turquesa">
+          <img class="local__logo" src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
+          <span class="capsula">Nuevo</span>
+          <p class="local__barrio">Hamburguesas en Boedo</p>
+          <h3 class="local__nombre">Boedo</h3>
+          <p class="local__direccion"><span class="pendiente">Dirección a confirmar</span></p>
+          <p class="local__dato"><span>Horarios</span> <span class="pendiente">A confirmar</span></p>
+          <div class="local__acciones">
+            <!-- Link armado con el identificador de la ficha de Google Maps que pasó Mati. -->
+            <a class="boton boton--negro boton--chico" href="https://maps.google.com/?cid=14977507410566765197" target="_blank" rel="noopener">Cómo llegar</a>
+            <span class="pendiente pendiente--boton">Rappi y reservas · a confirmar</span>
+          </div>
+        </li>
+
+        <!-- Recoleta: cerrado por refacciones. Sin horarios ni botón de pedir, para que nadie vaya. -->
+        <li class="local local--amarillo local--cerrado">
+          <img class="local__logo" src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
+          <span class="capsula capsula--negra">Cerrado temporalmente</span>
+          <p class="local__barrio">Hamburguesas en Recoleta</p>
+          <h3 class="local__nombre">Recoleta Express</h3>
+          <p class="local__direccion">Agüero 2092</p>
+          <p class="local__estado">Cerrado por refacciones. Avisamos por Instagram cuando vuelva a abrir.</p>
+          <div class="local__acciones">
+            <a class="boton boton--negro boton--chico" href="https://www.instagram.com/burgercouple.co/" target="_blank" rel="noopener">Novedades en Instagram</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIA ============ -->
+  <!-- Solo datos que el PDF de marca marca como verificados (entrevistas en La Nación y TN). -->
+  <section id="historia" class="seccion seccion--violeta" aria-labelledby="titulo-historia">
+    <div class="contenedor historia">
+      <div class="historia__intro">
+        <p class="rotulo rotulo--oscuro">Historia</p>
+        <h2 id="titulo-historia" class="titulo-seccion">De reseñar burgers a construir un universo</h2>
+        <p>Burger Couple es Víctor y Dana. Él es la parte lanzada; ella, la que le pone marco a las ideas. El nombre no es un invento publicitario: la pareja es el origen, el método y el relato.</p>
+        <!--
+          Sin foto a propósito: ninguna ilustración de la carta es seguro que sea Víctor,
+          y poner la cara de otra persona al lado de "Loco Piña" confundiría.
+          Cuando haya una foto aprobada de Víctor, va acá.
+        -->
+        <div class="loco">
+          <svg class="estallido loco__estallido" viewBox="0 0 100 100" aria-hidden="true"><use href="#forma-estallido"/></svg>
+          <div>
+            <h3>Loco Piña</h3>
+            <p>No es una mascota. Es Víctor en modo personaje: fundador, bufón y anfitrión de barrio.</p>
+            <p class="loco__redes"><a href="https://www.instagram.com/locopinia/" target="_blank" rel="noopener">@locopinia en Instagram</a> · <a href="https://www.youtube.com/@locopinia" target="_blank" rel="noopener">YouTube</a></p>
+          </div>
+        </div>
+      </div>
+      <ol class="linea">
+        <li><span class="linea__fecha">2017</span> Víctor y Dana se conocen. La comida se vuelve ritual de pareja.</li>
+        <li><span class="linea__fecha">2018–19</span> Nace la cuenta de reseñas: escritura bizarra y cómica. Más de 40 hamburgueserías reseñadas.</li>
+        <li><span class="linea__fecha">Fin 2019</span> Alguien pregunta lo inevitable: “¿Y por qué no cocinan ustedes?”.</li>
+        <li><span class="linea__fecha">2020</span> Plancha, freidora y delivery desde el patio de Villa Mitre. De 15 a 20 burgers por día.</li>
+        <li><span class="linea__fecha">2021</span> Primer local a la calle, en Boedo. La inauguración termina cocinando con velas por un corte de luz.</li>
+        <li><span class="linea__fecha">2022</span> Abre La Mansión, en Caballito.</li>
+        <li><span class="linea__fecha">2024</span> La Tercera llega a Belgrano.</li>
+        <li><span class="linea__fecha">Hoy</span> Cinco locales, y la vuelta a Boedo, el barrio donde empezó todo.</li>
+      </ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="damero damero--rosa" aria-hidden="true"></div>
+  <div class="contenedor pie__grilla">
+    <img src="/imagenes/logo-burger-couple.svg" alt="Burger Couple" width="160" height="90" loading="lazy">
+    <div>
+      <p class="pie__titulo">Seguinos</p>
+      <ul class="pie__redes">
+        <li><a href="https://www.instagram.com/burgercouple.co/" target="_blank" rel="noopener">Instagram @burgercouple.co</a></li>
+        <li><a href="https://www.instagram.com/locopinia/" target="_blank" rel="noopener">Instagram @locopinia</a></li>
+        <li><a href="https://www.youtube.com/@locopinia" target="_blank" rel="noopener">YouTube Loco Piña</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="pie__titulo">Contacto</p>
+      <p><span class="pendiente pendiente--claro">A confirmar</span></p>
+    </div>
+  </div>
+  <p class="contenedor pie__legal">© 2026 Burger Couple · Buenos Aires, Argentina · Precios y disponibilidad en Rappi y en cada local.</p>
+</footer>
+
+<!--
+  Forma del "estallido" (la estrella amarilla del PDF), definida una sola vez
+  y reutilizada con <use>, así no se repite el dibujo en cada lugar.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="forma-estallido" viewBox="0 0 100 100">
+    <polygon points="50,0 57,27 79,9 69,35 97,31 74,48 99,63 71,64 84,90 60,74 55,100 47,74 25,93 34,66 4,70 27,52 0,37 29,35 16,10 41,26"/>
+  </symbol>
+</svg>
+</body>
+</html>

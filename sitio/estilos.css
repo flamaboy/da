@@ -1,0 +1,360 @@
+/*
+  Estilos de la web de Burger Couple.
+
+  Regla general, tomada del PDF de marca: "el caos vive en el contenido y la
+  dirección de arte; la interfaz permanece clara". Por eso los colores y las
+  ilustraciones son intensos, pero los textos siempre tienen buen contraste y
+  los botones se ven como botones.
+
+  Está escrito "de celular para arriba": primero se diseña para pantallas chicas
+  (por donde entra casi toda la gente) y después se agranda para tablet y compu.
+*/
+
+/* ---------- Tipografías ---------- */
+/*
+  Las tipografías se sirven desde nuestra propia web y no desde Google Fonts.
+  Así nos ahorramos conectarnos a otro servidor, algo que con mala señal
+  se nota. "swap" hace que el texto aparezca enseguida con una letra de
+  reemplazo y cambie cuando termina de bajar la tipografía, en vez de quedar
+  en blanco.
+*/
+@font-face { font-family: "Erica One"; src: url("/fuentes/erica-one.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Bricolage Grotesque"; src: url("/fuentes/bricolage-grotesque.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("/fuentes/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+@font-face { font-family: "DM Mono"; src: url("/fuentes/dm-mono-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+/* ---------- Colores de marca (paleta observada en el PDF) ---------- */
+/*
+  Todos los colores se definen una sola vez acá. Cuando llegue la paleta oficial,
+  se cambian estos valores y se actualiza toda la web.
+*/
+:root {
+  --rosa: #F16A95;
+  --violeta: #A371AE;
+  --violeta-profundo: #612F6D;
+  --turquesa: #3DAAA7;
+  --amarillo: #FFC654;
+  --naranja: #ED8A4C;
+  --petroleo: #02514E;
+  --negro: #141116;
+  --crema: #FFF2DF;
+  /* Celeste de la carta de La Tercera: no está en la paleta del PDF, pero es el color de ese local. */
+  --celeste: #62A8DA;
+
+  --letra-display: "Erica One", "Arial Black", sans-serif;
+  --letra-titulos: "Bricolage Grotesque", "Arial Narrow", sans-serif;
+  --letra-texto: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --letra-datos: "DM Mono", ui-monospace, Menlo, monospace;
+
+  --radio: 22px;
+  --ancho-maximo: 1120px;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* El encabezado queda fijo arriba: sin esto, al tocar "Menú" el título quedaría tapado. */
+[id] { scroll-margin-top: 108px; }
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--negro);
+  font-family: var(--letra-texto);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.05; }
+p { margin: 0 0 .75em; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* Foco bien visible para quien navega con teclado. */
+:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 3px; border-radius: 6px; }
+
+.saltar {
+  position: absolute; left: 12px; top: -60px; z-index: 50;
+  background: var(--amarillo); padding: 10px 14px; border-radius: 10px; font-weight: 700;
+}
+.saltar:focus { top: 12px; }
+
+/* 16 px de margen a los costados en celular, como pide la guía de diseño. */
+.contenedor { width: 100%; max-width: var(--ancho-maximo); margin: 0 auto; padding: 0 16px; }
+.centrado { text-align: center; margin-top: 32px; }
+
+/* ---------- Piezas reutilizables ---------- */
+.rotulo {
+  font-family: var(--letra-datos); font-weight: 500; font-size: .8rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 10px;
+}
+.rotulo--oscuro { color: var(--violeta-profundo); }
+
+.titulo-seccion {
+  font-family: var(--letra-titulos); font-weight: 800;
+  font-size: clamp(2rem, 7vw, 3.4rem); letter-spacing: -.02em; margin-bottom: 14px;
+}
+.titulo-seccion--claro { color: #fff; }
+.seccion__bajada { max-width: 60ch; margin-bottom: 28px; }
+.seccion__bajada--claro { color: var(--crema); }
+
+.subtitulo {
+  font-family: var(--letra-titulos); font-weight: 800; font-size: 1.6rem;
+  margin: 40px 0 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+}
+.subtitulo small { font-family: var(--letra-datos); font-size: .75rem; font-weight: 500; text-transform: uppercase; color: var(--violeta-profundo); }
+.nota { font-size: .95rem; color: #4a3f4d; margin-bottom: 14px; }
+.nota--centro { text-align: center; margin-top: 24px; }
+
+/*
+  Botones: altura mínima de 48 px para que se puedan tocar con el dedo sin errar.
+  Texto negro sobre colores claros y blanco solo sobre fondos bien oscuros, por contraste.
+*/
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 12px 22px; border-radius: 999px;
+  font-weight: 700; font-size: 1rem; text-decoration: none; text-align: center;
+  border: 2px solid transparent; transition: transform .15s ease;
+}
+.boton:hover { transform: translateY(-2px); }
+.boton--chico { min-height: 44px; padding: 8px 16px; font-size: .95rem; }
+.boton--amarillo { background: var(--amarillo); color: var(--negro); }
+.boton--rosa { background: var(--rosa); color: var(--negro); }
+.boton--negro { background: var(--negro); color: #fff; }
+.boton--contorno { border-color: var(--crema); color: var(--crema); }
+
+/*
+  "A confirmar": marca bien visible para cada dato que todavía no tenemos.
+  Está hecho para que se note a propósito; así nadie lo confunde con un dato real.
+*/
+.pendiente {
+  display: inline-block; font-family: var(--letra-datos); font-size: .78rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .04em;
+  border: 2px dashed currentColor; border-radius: 8px; padding: 2px 8px; opacity: .85;
+}
+.pendiente--boton { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 12px; border-radius: 999px; }
+.pendiente--claro { color: var(--crema); }
+
+/* Cápsula: el motivo del PDF para estados y etiquetas ("NUEVO", "CERRADO"). */
+.capsula {
+  display: inline-block; align-self: flex-start; background: var(--naranja); color: var(--negro);
+  font-family: var(--letra-datos); font-size: .75rem; font-weight: 500; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 999px; margin-bottom: 10px;
+}
+.capsula--negra { background: var(--negro); color: var(--amarillo); }
+
+/* Damero: el motivo de cuadros del PDF, hecho con CSS para no cargar una imagen. */
+.damero { height: 24px; background-size: 24px 24px; background-position: 0 0, 12px 12px; }
+.damero--rosa {
+  background-color: var(--violeta-profundo);
+  background-image: conic-gradient(var(--rosa) 25%, transparent 0 50%, var(--rosa) 0 75%, transparent 0);
+}
+.damero--turquesa {
+  background-color: var(--rosa);
+  background-image: conic-gradient(var(--turquesa) 25%, transparent 0 50%, var(--turquesa) 0 75%, transparent 0);
+}
+.estallido { fill: var(--amarillo); }
+
+/* ---------- Encabezado ---------- */
+.cabecera {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(20, 17, 22, .94); color: var(--crema);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.cabecera__fila {
+  max-width: var(--ancho-maximo); margin: 0 auto; padding: 8px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.cabecera__logo img { width: 96px; height: auto; }
+.cabecera__nav { display: flex; gap: 4px; margin-left: auto; }
+.cabecera__nav a {
+  text-decoration: none; font-weight: 600; font-size: .95rem;
+  padding: 10px 8px; border-radius: 8px; min-height: 44px; display: inline-flex; align-items: center;
+}
+.cabecera__nav a:hover { color: var(--amarillo); }
+/*
+  En celulares angostos no entran el logo, los tres links y el botón en una fila.
+  En vez de esconder el menú detrás de un botón "hamburguesa" (que mucha gente no toca),
+  los links bajan a una segunda fila y siempre se ven.
+*/
+@media (max-width: 559px) {
+  .cabecera__fila { flex-wrap: wrap; row-gap: 0; padding-bottom: 0; }
+  .cabecera__fila > .boton { margin-left: auto; }
+  .cabecera__nav { order: 3; width: 100%; margin-left: 0; justify-content: space-between; border-top: 1px solid rgba(255, 242, 223, .15); }
+}
+
+/* ---------- Portada ---------- */
+.portada { background: var(--negro); color: var(--crema); overflow: hidden; }
+.portada__grilla { display: grid; gap: 8px; padding-top: 36px; }
+.portada__titulo {
+  font-family: var(--letra-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(2.7rem, 13vw, 6.2rem); line-height: .92; color: var(--rosa); margin-bottom: 18px;
+}
+.portada__titulo span { color: var(--amarillo); display: block; }
+.portada__bajada { font-size: 1.15rem; max-width: 34ch; margin-bottom: 24px; }
+.portada__acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+/* El ancho máximo mantiene la estrella pegada al marco en pantallas medianas (tablet). */
+.portada__arte { position: relative; margin: 20px auto 0; padding-top: 30px; width: 100%; max-width: 470px; }
+.portada__pantalla {
+  width: min(86%, 400px); margin: 0 auto; background: var(--turquesa);
+  border: 4px solid var(--crema); border-bottom: 0; border-radius: 28px 28px 0 0; overflow: hidden;
+}
+.portada__ilus { width: 100%; }
+.portada__estallido { position: absolute; width: 140px; right: 0; top: 0; }
+.portada__burger { position: absolute; width: 112px; right: 14px; top: 38px; }
+
+/* ---------- Cinta que se desplaza (zócalo de TV) ---------- */
+.cinta { background: var(--amarillo); overflow: hidden; border-block: 3px solid var(--negro); }
+.cinta__pista {
+  display: flex; gap: 28px; width: max-content; padding: 12px 0;
+  font-family: var(--letra-display); text-transform: uppercase; font-size: 1.1rem; white-space: nowrap;
+  animation: zocalo 28s linear infinite;
+}
+@keyframes zocalo { to { transform: translateX(-50%); } }
+
+/* ---------- Secciones ---------- */
+.seccion { padding: 56px 0; }
+.seccion--crema { background: var(--crema); }
+.seccion--violeta { background: var(--violeta); }
+
+/* ---------- Menú ---------- */
+/* Dos columnas ya en celular: el menú es largo y así se recorre con menos scroll. */
+.grilla-burgers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.burger {
+  background: #fff; border-radius: var(--radio); padding: 14px;
+  display: flex; flex-direction: column;
+}
+.burger__foto { width: 100%; max-width: 180px; aspect-ratio: 4 / 3; object-fit: contain; margin: 0 auto 8px; }
+.burger__nombre { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.15rem; margin-bottom: 6px; }
+.burger__desc { font-size: .9rem; color: #4a3f4d; margin: 0; }
+.burger--sin-foto { border-top: 6px solid var(--rosa); }
+
+.menu-extra { display: grid; gap: 14px; margin-top: 44px; align-items: start; }
+.tarjeta { border-radius: var(--radio); padding: 22px; color: var(--negro); }
+.tarjeta p:last-child { margin-bottom: 0; }
+.tarjeta__titulo { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.5rem; margin-bottom: 10px; }
+.tarjeta__imagen { width: 170px; margin-bottom: 8px; }
+.tarjeta__letra-chica { font-size: .88rem; }
+.tarjeta--rosa { background: var(--rosa); }
+.tarjeta--turquesa { background: var(--turquesa); }
+.tarjeta--amarillo { background: var(--amarillo); }
+.tarjeta--violeta { background: var(--violeta); }
+
+.aviso {
+  margin-top: 28px; background: #fff; border-left: 6px solid var(--petroleo);
+  border-radius: 12px; padding: 16px 18px; font-size: .95rem;
+}
+
+/* ---------- Canal Fetiche ---------- */
+.canal { background: var(--violeta-profundo); padding-bottom: 56px; }
+.canal .contenedor { padding-top: 48px; }
+.canales { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.canales__item {
+  position: relative; border-radius: var(--radio); aspect-ratio: 1; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+  border: 3px solid var(--negro);
+}
+.canales__item img { max-height: 92%; width: auto; object-fit: contain; }
+.canales__numero {
+  position: absolute; top: 10px; left: 10px; z-index: 1;
+  font-family: var(--letra-datos); font-size: .75rem; background: var(--negro); color: var(--crema);
+  padding: 3px 8px; border-radius: 6px;
+}
+.canales__item--rosa { background: var(--rosa); }
+.canales__item--turquesa { background: var(--turquesa); }
+.canales__item--amarillo { background: var(--amarillo); }
+.canales__item--violeta { background: var(--violeta); }
+.canales__item--naranja { background: var(--naranja); }
+
+/* ---------- Locales ---------- */
+.locales { display: grid; gap: 16px; }
+.local {
+  border-radius: var(--radio); padding: 22px; display: flex; flex-direction: column;
+  color: var(--negro); position: relative;
+}
+.local__logo { width: auto; height: 110px; max-width: 170px; object-fit: contain; object-position: left bottom; margin-bottom: 10px; }
+.local__barrio { font-family: var(--letra-datos); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.local__nombre { font-family: var(--letra-titulos); font-weight: 800; font-size: 2rem; margin-bottom: 6px; }
+.local__direccion { font-weight: 700; font-size: 1.15rem; }
+.local__dato { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-weight: 600; }
+.local__estado { font-weight: 600; }
+.local__acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; }
+.local--violeta { background: var(--violeta); }
+.local--celeste { background: var(--celeste); }
+.local--naranja { background: var(--naranja); }
+.local--turquesa { background: var(--turquesa); }
+.local--amarillo { background: var(--amarillo); }
+
+/* ---------- Historia ---------- */
+.historia { display: grid; gap: 32px; }
+.loco {
+  display: flex; gap: 16px; align-items: center; margin-top: 24px;
+  background: var(--negro); color: var(--crema); border-radius: var(--radio); padding: 20px;
+}
+.loco__estallido { width: 64px; flex: none; }
+.loco h3 { font-family: var(--letra-display); font-weight: 400; font-size: 1.5rem; color: var(--rosa); margin-bottom: 6px; text-transform: uppercase; }
+.loco p { margin-bottom: 6px; }
+.loco__redes { font-size: .95rem; }
+.loco__redes a { color: var(--amarillo); }
+.linea { border-left: 4px solid var(--negro); padding-left: 18px; }
+.linea li { position: relative; padding-bottom: 16px; }
+.linea li::before {
+  content: ""; position: absolute; left: -29px; top: 4px; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--rosa); border: 3px solid var(--negro);
+}
+.linea li:nth-child(even)::before { background: var(--turquesa); }
+.linea__fecha { display: block; font-family: var(--letra-datos); font-weight: 500; font-size: .85rem; color: var(--violeta-profundo); }
+
+/* ---------- Pie ---------- */
+.pie { background: var(--negro); color: var(--crema); padding-bottom: 28px; }
+.pie__grilla { display: grid; gap: 24px; padding-top: 36px; padding-bottom: 24px; }
+.pie__grilla img { width: 140px; }
+.pie__titulo { font-family: var(--letra-datos); text-transform: uppercase; font-size: .8rem; color: var(--amarillo); margin-bottom: 8px; }
+.pie__redes li { margin-bottom: 4px; }
+.pie__redes a { display: inline-block; padding: 6px 0; }
+.pie__legal { font-size: .85rem; opacity: .75; }
+
+/* ---------- Tablet (desde 700 px) ---------- */
+@media (min-width: 700px) {
+  .cabecera__logo img { width: 110px; }
+  .cabecera__nav { gap: 12px; }
+  .grilla-burgers { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .menu-extra { grid-template-columns: repeat(2, 1fr); }
+  .canales { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .locales { grid-template-columns: repeat(2, 1fr); }
+  .pie__grilla { grid-template-columns: auto 1fr 1fr; align-items: start; }
+}
+
+/* ---------- Computadora (desde 1000 px) ---------- */
+@media (min-width: 1000px) {
+  .portada__grilla { grid-template-columns: 1.2fr .8fr; align-items: end; padding-top: 56px; }
+  .portada__texto { padding-bottom: 64px; }
+  .portada__titulo { font-size: 4.9rem; }
+  .portada__pantalla { width: min(92%, 420px); }
+  .portada__estallido { width: 170px; right: -10px; }
+  .portada__burger { width: 136px; top: 44px; right: 7px; }
+  .grilla-burgers { grid-template-columns: repeat(4, 1fr); }
+  .canales { grid-template-columns: repeat(6, 1fr); }
+  .canales__item { aspect-ratio: 3 / 4; }
+  .locales { grid-template-columns: repeat(3, 1fr); }
+  .historia { grid-template-columns: 1fr 1fr; align-items: start; }
+  .seccion { padding: 80px 0; }
+}
+
+/*
+  Si la persona configuró su teléfono o compu para "reducir movimiento"
+  (por mareos o comodidad), sacamos las animaciones. Lo pide el PDF de marca
+  y es una buena práctica de accesibilidad.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cinta__pista { animation: none; }
+  .boton { transition: none; }
+}
+
+/* En las tarjetas de locales, la cápsula de estado va arriba a la derecha,
+   para que el logo quede a la misma altura en todos los locales. */
+.local .capsula { position: absolute; top: 18px; right: 18px; margin: 0; }
+
+/* ---------- Página 404 ---------- */
+.error { min-height: 100vh; background: var(--negro); color: var(--crema); }
+.error__contenido { padding-top: 64px; padding-bottom: 64px; }

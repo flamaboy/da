@@ -1,0 +1,23 @@
+# Instrucciones para Cloudflare sobre cómo servir los archivos.
+# (Este archivo no se ve en la web; Cloudflare lo lee al publicar.)
+
+# Seguridad básica para todas las páginas.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Tipografías: no cambian nunca, el navegador las guarda un año.
+# Así, desde la segunda visita, con mala señal se descarga casi nada.
+/fuentes/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imágenes: se guardan una semana y no un año, porque a veces reemplazamos
+# una imagen con el mismo nombre (por ejemplo, cuando llegue el logo oficial).
+/imagenes/*
+  Cache-Control: public, max-age=604800
+
+# El control de versión nunca se guarda: el script de publicación lo usa
+# para comprobar que las dos direcciones muestran lo último.
+/version.txt
+  Cache-Control: no-store
