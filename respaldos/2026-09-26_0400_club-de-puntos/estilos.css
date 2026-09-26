@@ -64,11 +64,6 @@ body {
   line-height: 1.5;
 }
 img { max-width: 100%; height: auto; display: block; }
-/* Lo que está marcado como oculto se oculta siempre, aunque otra regla le dé
-   un "display" (sin esto, formularios y la cámara de la caja se veían igual). */
-[hidden] { display: none !important; }
-/* Los botones del navegador no heredan la letra de la página: se la damos. */
-button, input, select { font-family: inherit; }
 a { color: inherit; }
 h1, h2, h3, h4 { margin: 0; line-height: 1.05; }
 p { margin: 0 0 .75em; }
@@ -558,12 +553,3 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .mansion__frontis img { height: 54px; }
 .mansion__puerta { height: 106px; }
 .mansion__interior img { width: 58px; }
-
-/* ---------- Invitación al club (en la página principal) ---------- */
-.club-invitacion { background: var(--negro); }
-.club-invitacion__grilla { display: grid; gap: 20px; align-items: center; }
-.club-invitacion__deco { width: 140px; justify-self: end; }
-@media (min-width: 700px) {
-  .club-invitacion__grilla { grid-template-columns: 1fr auto; }
-  .club-invitacion__deco { width: 220px; }
-}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Club Burger Couple · Sumá puntos con cada burger</title>
+<meta name="description" content="El club de puntos de Burger Couple: sumá 10 puntos por cada $1.000 y canjealos por burgers, papas y la Box.">
+<meta name="theme-color" content="#141116">
+<link rel="icon" href="/imagenes/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/imagenes/icono-180.png">
+<link rel="preload" href="/fuentes/erica-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fuentes/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/estilos.css">
+<link rel="stylesheet" href="/club/club.css">
+<!--
+  Orden de los scripts: primero la conexión (config), después la herramienta
+  de Supabase y al final nuestra lógica. "defer" hace que no frenen la carga.
+-->
+<script src="/club/config.js" defer></script>
+<script src="/club/vendor/supabase-2.117.2.js" defer></script>
+<script src="/club/club.js" defer></script>
+</head>
+<body data-pagina="inicio">
+<header class="cabecera">
+  <div class="cabecera__fila">
+    <a class="cabecera__logo" href="/" aria-label="Burger Couple, volver al inicio">
+      <img src="/imagenes/logo-burger-couple.svg" alt="Burger Couple" width="120" height="68">
+    </a>
+    <nav class="cabecera__nav" aria-label="Secciones">
+      <a href="/#menu">Menú</a>
+      <a href="/#locales">Locales</a>
+      <a href="/club/">Club</a>
+    </nav>
+    <a class="boton boton--rosa boton--chico" href="/#locales">Pedir</a>
+  </div>
+</header>
+<main>
+  <section class="club-portada">
+    <div class="damero damero--rosa" aria-hidden="true"></div>
+    <div class="contenedor club-portada__grilla">
+      <div>
+        <p class="rotulo">Club Burger Couple</p>
+        <h1 class="portada__titulo">Tus puntos. <span>Sin vueltas raras.</span></h1>
+        <p class="portada__bajada">Cada burger suma. Juntá puntos y canjealos por papas, burgers y la Box.</p>
+        <a class="boton boton--amarillo" href="#cuenta">Quiero sumarme</a>
+      </div>
+      <span class="deco deco--turquesa club-portada__deco" aria-hidden="true"><img src="/imagenes/ilus-hincha.webp" alt="" width="402" height="470"></span>
+    </div>
+  </section>
+
+  <!--
+    Reglas escritas literal y sin chistes: el PDF de marca pide que puntos,
+    vencimientos y canjes se expliquen claro. Si cambian, se cambian acá,
+    en bases.html y en la base de datos (supabase/migraciones).
+  -->
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Cómo funciona</h2>
+      <ol class="pasos">
+        <li><span class="pasos__numero">1</span><strong>Creá tu cuenta</strong> con tu mail. Tu primera compra suma el doble.</li>
+        <li><span class="pasos__numero">2</span><strong>Mostrá tu QR</strong> al pagar en cualquier local. Sumás <strong>10 puntos por cada $1.000</strong>.</li>
+        <li><span class="pasos__numero">3</span><strong>Canjeá</strong> tus puntos por premios en el local.</li>
+      </ol>
+      <p class="nota">Los puntos vencen si pasás 3 meses sin comprar: cada compra corre la fecha. Los pedidos por Rappi no suman puntos.</p>
+
+      <h2 class="titulo-seccion club-subtitulo">Niveles</h2>
+      <p class="nota">Tu nivel depende de lo que gastaste en los últimos 3 meses.</p>
+      <ul class="niveles">
+        <li class="nivel nivel--pelo-crocante"><h3>Pelo Crocante</h3><p class="nivel__req">Al crear tu cuenta</p><p>10 puntos por cada $1.000.</p></li>
+        <li class="nivel nivel--tomasito"><h3>Tomasito</h3><p class="nivel__req">$60.000 en 3 meses</p><p>+10% de puntos en cada compra.</p></li>
+        <li class="nivel nivel--comandante"><h3>Comandante</h3><p class="nivel__req">$150.000 en 3 meses</p><p>+25% de puntos y un premio exclusivo.</p></li>
+      </ul>
+
+      <h2 class="titulo-seccion club-subtitulo">Premios</h2>
+      <!-- Esta lista se reemplaza sola por la de la base de datos cuando el club está conectado. -->
+      <ul id="lista-premios" class="premios">
+        <li class="premio"><span class="premio__puntos">400<small>pts</small></span><span class="premio__nombre">Gaseosa o limonada</span></li>
+        <li class="premio"><span class="premio__puntos">1.000<small>pts</small></span><span class="premio__nombre">Postre Franui</span></li>
+        <li class="premio"><span class="premio__puntos">1.100<small>pts</small></span><span class="premio__nombre">Papas fritas con el polvito del Loco Piña</span></li>
+        <li class="premio"><span class="premio__puntos">1.800<small>pts</small></span><span class="premio__nombre">Cheese simple</span></li>
+        <li class="premio"><span class="premio__puntos">2.500<small>pts</small></span><span class="premio__nombre">Burger doble a elección</span></li>
+        <li class="premio"><span class="premio__puntos">3.000<small>pts</small></span><span class="premio__nombre">The Burger Couple Box</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="cuenta" class="seccion seccion--violeta">
+    <div class="contenedor club-cuenta">
+  <!-- Se muestra solo mientras el club no esté conectado a Supabase. -->
+  <div id="aviso-sin-conexion" class="aviso aviso--pendiente" hidden>
+    <strong>El club todavía no está conectado.</strong> Estamos terminando de armarlo:
+    muy pronto vas a poder crear tu cuenta acá.
+  </div>
+      <div class="panel-cuenta" data-requiere-conexion>
+        <div class="pestanas" role="tablist">
+          <button type="button" role="tab" data-pestana="registro" aria-selected="true">Crear cuenta</button>
+          <button type="button" role="tab" data-pestana="entrar" aria-selected="false">Ya tengo cuenta</button>
+        </div>
+
+        <form id="form-registro" class="formulario" data-panel="registro">
+          <label>Tu nombre <input name="nombre" autocomplete="given-name" required maxlength="60"></label>
+          <label>Mail <input name="email" type="email" autocomplete="email" required></label>
+          <label>Contraseña <small>(mínimo 8 caracteres)</small> <input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+          <label class="casilla"><input name="bases" type="checkbox"> <span>Acepto las <a href="/club/bases.html" target="_blank">bases y condiciones</a> y la <a href="/club/privacidad.html" target="_blank">política de privacidad</a>.</span></label>
+          <button class="boton boton--amarillo" type="submit">Crear mi cuenta</button>
+          <p id="msg-registro" class="mensaje" role="status" aria-live="polite"></p>
+        </form>
+
+        <form id="form-entrar" class="formulario" data-panel="entrar" hidden>
+          <label>Mail <input name="email" type="email" autocomplete="email" required></label>
+          <label>Contraseña <input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="boton boton--amarillo" type="submit">Entrar</button>
+          <button id="boton-olvide" class="boton-texto" type="button">Me olvidé la contraseña</button>
+          <p id="msg-entrar" class="mensaje" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="pie">
+  <div class="damero damero--rosa" aria-hidden="true"></div>
+  <div class="contenedor pie__club">
+    <img src="/imagenes/logo-burger-couple.svg" alt="Burger Couple" width="140" height="80" loading="lazy">
+    <p><a href="/club/bases.html">Bases y condiciones</a> · <a href="/club/privacidad.html">Privacidad</a> · <a href="/">Volver a la web</a></p>
+  </div>
+</footer>
+</body>
+</html>

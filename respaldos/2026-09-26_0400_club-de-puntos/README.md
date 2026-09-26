@@ -53,40 +53,6 @@ Además tiene:
 **Todo lo que dice "A CONFIRMAR"** (con borde punteado) es un dato que
 todavía no tenemos. Está así a propósito, para que nadie lo tome como real.
 
-### El club de puntos (`/club/`), armado pero todavía sin conectar
-
-- **`/club/`**: cómo funciona, niveles, premios, y crear cuenta o entrar
-  (mail y contraseña). Si se olvida la contraseña, le llega un mail.
-- **`/club/mi-cuenta.html`**: la tarjeta del socio. Muestra puntos, nivel (el
-  color cambia según el nivel), el QR para mostrar en la caja, cuánto le falta
-  para el nivel siguiente, cuándo vencen sus puntos, los premios y el historial.
-- **`/club/caja.html`**: el panel del personal. Se escanea el QR con la cámara
-  o se tipea el código, se carga el monto de la compra y se suman los puntos.
-  También se canjean premios. Los administradores habilitan o quitan cajeros.
-- **`/club/bases.html` y `/club/privacidad.html`**: BORRADORES para que los
-  revise un abogado.
-
-**Reglas del programa:**
-- 10 puntos por cada $1.000, y doble puntos en la primera compra.
-- Los puntos vencen si el socio pasa 3 meses sin comprar.
-- Niveles según lo gastado en los últimos 3 meses: Pelo Crocante (al
-  registrarse), Tomasito ($60.000, +10% de puntos) y Comandante ($150.000,
-  +25% de puntos y un premio exclusivo).
-- Los pedidos por Rappi no suman.
-- Premios: gaseosa (400), Franui (1.000), papas (1.100), cheese (1.800),
-  burger doble (2.500), Box (3.000) y el exclusivo Comandante (a definir).
-
-Mientras no esté conectado a Supabase, las páginas muestran "El club todavía
-no está conectado" en vez de un formulario que no anda.
-
-**Cómo está armado (en criollo):** los puntos viven en una base de datos de
-Supabase, en un proyecto **separado de BC OS**. La base guarda cada movimiento
-(compras, canjes, vencimientos, ajustes) y el saldo es la suma de todos, así
-cada punto tiene explicación. El cliente solo puede **mirar** lo suyo; los
-puntos los suma únicamente el servidor, después de comprobar que quien los
-carga es personal habilitado. La web nunca decide cuántos puntos se suman.
-Todo está en `supabase/`, con 37 pruebas de seguridad que pasan todas.
-
 ---
 
 ## Cómo publicar
@@ -150,11 +116,8 @@ que se comparte. Ojo con la que tiene un código al principio (ver trampa 1 bis)
 desplegar.command    ← el botón de publicar (doble clic)
 README.md            ← este archivo
 respaldos/           ← copias de seguridad antes de cada tanda de cambios
-supabase/            ← la base de datos del club (reglas, permisos y pruebas)
 sitio/               ← LA WEB: todo lo que está acá se publica, y nada más
    index.html        ← la página (textos, menú, locales)
-   club/             ← las páginas del club de puntos
-   juegos.js         ← los juegos de las tarjetas de locales
    estilos.css       ← colores, tipografías y diseño
    404.html          ← página de error
    imagenes/         ← logos, fotos de hamburguesas, ilustraciones
@@ -185,9 +148,6 @@ y el token nunca salen a internet.
 | **Ilustraciones como figuritas repartidas, no en una franja aparte** | Mati prefirió que decoren toda la página. Van en círculos (el motivo "duotono" del PDF) que las recortan, así nunca tapan textos ni botones. |
 | **Loco Piña sin foto** | Ninguna ilustración de la carta es seguro que sea Víctor. Cuando haya una foto aprobada, se agrega. |
 | **Tipografías servidas desde nuestra web** | Evita conectarse a Google Fonts: con mala señal, cada conexión de más se nota. |
-| **Club: el cajero escanea el QR del socio** | Funciona en todos los locales sin depender del sistema de caja. Más adelante se puede automatizar. |
-| **Club: los puntos se guardan como movimientos, no como un número** | Cada punto tiene su explicación, y un error se corrige con un ajuste que queda registrado, sin borrar nada. |
-| **Club: proyecto de Supabase separado de BC OS** | Para no mezclar ni arriesgar el sistema de facturas. |
 | **Muy poco JavaScript (`juegos.js`)** | Solo para los juegos de los locales. La página funciona entera sin él: si fallara, se ven igual todos los datos y el botón "Cómo llegar". |
 | **Escenas dibujadas con código, no fotos de internet** | Las fotos de internet tienen dueño (medios, fotógrafos, FIFA) y pesan mucho. Los dibujos son propios y cargan al instante. |
 | **El mapa de Los 90's se carga recién al apretar ON** | Un mapa de Google es pesado; así no hace lenta la página para quien no lo usa. |
@@ -216,28 +176,9 @@ y el token nunca salen a internet.
 - [ ] Crear el token de Cloudflare y hacer la primera publicación.
 - [ ] Más adelante: conectar un dominio propio (por ejemplo `burgercouple.com.ar`).
 
-**Club de puntos (para poder lanzarlo):**
-- [ ] Crear el proyecto `burgercouple-club` en Supabase: desde acá la creación
-      no respondió (3 intentos, sin crear nada a medias).
-- [ ] Aplicar la base de datos (`supabase/migraciones`) y correr las pruebas allá.
-- [ ] Poner la dirección y la clave pública del proyecto en `sitio/club/config.js`.
-- [ ] En Supabase, configurar la dirección de la web en **Authentication → URL
-      Configuration** (si no, los links de los mails llevan a otro lado).
-- [ ] Configurar un servicio de mails propio (SMTP, por ejemplo Resend). El
-      servicio de mails que trae Supabase de fábrica solo manda mails a los
-      miembros del equipo: sin esto, a los clientes no les llega el mail de
-      confirmación.
-- [ ] Crear tu cuenta en `/club/` y que Claude la marque como administrador.
-- [ ] Revisión legal de las bases y la privacidad, y registro de la base de datos
-      ante la Agencia de Acceso a la Información Pública.
-- [ ] Definir el premio exclusivo Comandante y el mail de contacto.
-- [ ] Pasar a un plan pago de Supabase antes de lanzar (los proyectos gratis se
-      "duermen" si pasan unos días sin uso).
-
 **Mejoras para después:**
 - [ ] Una página por local (ayuda a aparecer en Google con "hamburguesas + barrio").
-- [ ] Club: sumar puntos automáticamente desde el sistema de caja (hay que
-      averiguar qué sistema usan los locales).
+- [ ] Etapa 2: club de puntos con Supabase.
 
 ---
 
@@ -314,7 +255,3 @@ Antes de cada tanda de cambios, Claude copia lo que va a tocar a
   cinta de obra en Recoleta). Se sacó la idea de "canal de TV" de los textos.
   Nueva ilustración en "Los patices". Respaldo en
   `respaldos/2026-09-26_*_escenas-locales/`.
-- **26/09/2026**: club de puntos armado (páginas, reglas, base de datos y 37
-  pruebas de seguridad), todavía sin conectar: la creación del proyecto en
-  Supabase no respondió desde acá. "Club" reemplaza a "Historia" en el menú de
-  arriba. Respaldo en `respaldos/2026-09-26_*_club-de-puntos/`.

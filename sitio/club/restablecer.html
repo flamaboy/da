@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contraseña nueva · Club Burger Couple</title>
+<meta name="description" content="Elegí una contraseña nueva para tu cuenta del club.">
+<!-- Página privada: que Google no la muestre en los resultados. -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141116">
+<link rel="icon" href="/imagenes/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/imagenes/icono-180.png">
+<link rel="preload" href="/fuentes/erica-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fuentes/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/estilos.css">
+<link rel="stylesheet" href="/club/club.css">
+<!--
+  Orden de los scripts: primero la conexión (config), después la herramienta
+  de Supabase y al final nuestra lógica. "defer" hace que no frenen la carga.
+-->
+<script src="/club/config.js" defer></script>
+<script src="/club/vendor/supabase-2.117.2.js" defer></script>
+<script src="/club/club.js" defer></script>
+</head>
+<body data-pagina="restablecer">
+<header class="cabecera">
+  <div class="cabecera__fila">
+    <a class="cabecera__logo" href="/" aria-label="Burger Couple, volver al inicio">
+      <img src="/imagenes/logo-burger-couple.svg" alt="Burger Couple" width="120" height="68">
+    </a>
+    <nav class="cabecera__nav" aria-label="Secciones">
+      <a href="/#menu">Menú</a>
+      <a href="/#locales">Locales</a>
+      <a href="/club/">Club</a>
+    </nav>
+    <a class="boton boton--rosa boton--chico" href="/#locales">Pedir</a>
+  </div>
+</header>
+<main class="seccion seccion--violeta">
+  <div class="contenedor club-cuenta">
+  <!-- Se muestra solo mientras el club no esté conectado a Supabase. -->
+  <div id="aviso-sin-conexion" class="aviso aviso--pendiente" hidden>
+    <strong>El club todavía no está conectado.</strong> Estamos terminando de armarlo:
+    muy pronto vas a poder crear tu cuenta acá.
+  </div>
+    <form id="form-restablecer" class="formulario panel-cuenta" data-requiere-conexion>
+      <h1 class="titulo-seccion">Contraseña nueva</h1>
+      <label>Contraseña nueva <small>(mínimo 8 caracteres)</small> <input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+      <label>Repetila <input name="password2" type="password" autocomplete="new-password" minlength="8" required></label>
+      <button class="boton boton--amarillo" type="submit">Guardar</button>
+      <p id="msg-restablecer" class="mensaje" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</main>
+<footer class="pie">
+  <div class="damero damero--rosa" aria-hidden="true"></div>
+  <div class="contenedor pie__club">
+    <img src="/imagenes/logo-burger-couple.svg" alt="Burger Couple" width="140" height="80" loading="lazy">
+    <p><a href="/club/bases.html">Bases y condiciones</a> · <a href="/club/privacidad.html">Privacidad</a> · <a href="/">Volver a la web</a></p>
+  </div>
+</footer>
+</body>
+</html>

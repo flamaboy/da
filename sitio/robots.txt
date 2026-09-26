@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+# Páginas privadas del club: no tienen nada para buscar en Google.
+Disallow: /club/caja.html
+Disallow: /club/mi-cuenta.html
+Disallow: /club/restablecer.html
 
 Sitemap: https://__DIRECCION__/sitemap.xml

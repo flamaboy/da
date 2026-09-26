@@ -21,11 +21,3 @@
 # para comprobar que las dos direcciones muestran lo último.
 /version.txt
   Cache-Control: no-store
-
-# Herramientas del club: el nombre lleva la versión, así que nunca cambian.
-/club/vendor/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# La conexión del club no se guarda, para que un cambio llegue al instante.
-/club/config.js
-  Cache-Control: no-cache

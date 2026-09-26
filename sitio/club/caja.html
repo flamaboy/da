@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caja · Club Burger Couple</title>
+<meta name="description" content="Panel del personal para cargar compras y canjes del club.">
+<!-- Página privada: que Google no la muestre en los resultados. -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141116">
+<link rel="icon" href="/imagenes/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/imagenes/icono-180.png">
+<link rel="preload" href="/fuentes/erica-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fuentes/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/estilos.css">
+<link rel="stylesheet" href="/club/club.css">
+<!--
+  Orden de los scripts: primero la conexión (config), después la herramienta
+  de Supabase y al final nuestra lógica. "defer" hace que no frenen la carga.
+-->
+<script src="/club/config.js" defer></script>
+<script src="/club/vendor/supabase-2.117.2.js" defer></script>
+<script src="/club/vendor/jsqr-1.4.0.js" defer></script>
+<script src="/club/club.js" defer></script>
+</head>
+<!--
+  Panel de caja: solo para el personal de los locales.
+  Cualquiera puede abrir esta dirección, pero sin una cuenta habilitada como
+  personal no puede hacer nada: la base de datos rechaza todo (ver pruebas).
+  Está pensado para usarse parado, con una mano, en un celular o tablet:
+  botones grandes y pocos pasos.
+-->
+<body data-pagina="caja" class="caja">
+<main class="seccion">
+  <div class="contenedor caja__contenedor">
+    <h1 class="titulo-seccion">Caja del club</h1>
+  <!-- Se muestra solo mientras el club no esté conectado a Supabase. -->
+  <div id="aviso-sin-conexion" class="aviso aviso--pendiente" hidden>
+    <strong>El club todavía no está conectado.</strong> Estamos terminando de armarlo:
+    muy pronto vas a poder crear tu cuenta acá.
+  </div>
+    <form id="caja-login" class="formulario panel-cuenta panel-cuenta--claro" hidden data-requiere-conexion>
+      <p>Entrá con tu cuenta de personal.</p>
+      <label>Mail <input name="email" type="email" autocomplete="username" required></label>
+      <label>Contraseña <input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="boton boton--negro" type="submit">Entrar</button>
+      <p id="msg-caja-login" class="mensaje" role="status" aria-live="polite"></p>
+    </form>
+
+    <div id="caja-panel" hidden>
+      <div class="caja__barra">
+        <span>Atiende: <strong id="caja-quien"></strong></span>
+        <label>Local
+          <select id="caja-local">
+            <option value="la-mansion">La Mansión (Caballito)</option>
+            <option value="la-tercera">La Tercera (Belgrano)</option>
+            <option value="los-90s">Los 90's (Palermo Soho)</option>
+            <option value="boedo">Boedo</option>
+            <option value="recoleta-express">Recoleta Express</option>
+          </select>
+        </label>
+        <button id="boton-caja-salir" class="boton-texto" type="button">Salir</button>
+      </div>
+
+      <section id="paso-buscar" class="caja__paso">
+        <h2>1. Buscá al socio</h2>
+        <button id="boton-escanear" class="boton boton--amarillo boton--grande" type="button">📷 Escanear QR</button>
+        <div id="marco-camara" class="camara" hidden>
+          <video id="camara" playsinline muted></video>
+          <button id="boton-cerrar-camara" class="boton boton--negro boton--chico" type="button">Cerrar cámara</button>
+        </div>
+        <form id="form-codigo" class="formulario formulario--linea">
+          <label>O escribí el código <input name="codigo" autocomplete="off" autocapitalize="characters" placeholder="BC······" maxlength="8"></label>
+          <button class="boton boton--negro" type="submit">Buscar</button>
+        </form>
+        <p id="msg-socio" class="mensaje" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="paso-socio" class="caja__paso" hidden>
+        <div class="caja__socio">
+          <div>
+            <p class="caja__socio-nombre" id="s-nombre"></p>
+            <p><span class="codigo" id="s-codigo"></span> · Nivel <strong id="s-nivel"></strong></p>
+          </div>
+          <p class="caja__saldo"><span id="s-saldo"></span><small>puntos</small></p>
+        </div>
+
+        <h2>2. Cargá la compra</h2>
+        <form id="form-compra" class="formulario formulario--linea">
+          <label>Monto total de la compra ($)
+            <input name="monto" inputmode="numeric" autocomplete="off" placeholder="Ej: 25000" required></label>
+          <button class="boton boton--amarillo boton--grande" type="submit">Sumar puntos</button>
+        </form>
+        <p id="msg-compra" class="mensaje mensaje--grande" role="status" aria-live="polite"></p>
+
+        <h2>O canjeá un premio</h2>
+        <ul id="s-premios" class="premios premios--caja"></ul>
+        <p id="msg-canje" class="mensaje mensaje--grande" role="status" aria-live="polite"></p>
+
+        <button id="boton-otro-socio" class="boton boton--negro" type="button">Atender a otro socio</button>
+      </section>
+
+      <!-- Solo lo ven los administradores. -->
+      <section id="caja-admin" class="caja__paso caja__admin" hidden>
+        <h2>Administración</h2>
+        <p class="nota">Para habilitar a alguien: primero se crea una cuenta común en <a href="/club/">/club</a> con su mail. Después la habilitás acá.</p>
+        <form id="form-alta" class="formulario">
+          <label>Mail de la persona <input name="email" type="email" required></label>
+          <label>Nombre <input name="nombre" required></label>
+          <label>Rol <select name="rol"><option value="cajero">Cajero</option><option value="admin">Administrador</option></select></label>
+          <label>Local <select name="local"><option value="">Todos</option><option value="la-mansion">La Mansión (Caballito)</option>
+            <option value="la-tercera">La Tercera (Belgrano)</option>
+            <option value="los-90s">Los 90's (Palermo Soho)</option>
+            <option value="boedo">Boedo</option>
+            <option value="recoleta-express">Recoleta Express</option></select></label>
+          <button class="boton boton--negro" type="submit">Habilitar para la caja</button>
+          <p id="msg-alta" class="mensaje" role="status" aria-live="polite"></p>
+        </form>
+        <form id="form-baja" class="formulario formulario--linea">
+          <label>Quitar acceso a (mail) <input name="email" type="email" required></label>
+          <button class="boton boton--negro" type="submit">Quitar acceso</button>
+          <p id="msg-baja" class="mensaje" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+</body>
+</html>

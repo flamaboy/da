@@ -1,0 +1,160 @@
+/*
+  Estilos propios de las páginas del club. Usa los mismos colores y letras
+  que la web (vienen de /estilos.css). Acá solo está lo que es del club.
+
+  Criterio (del PDF de marca): "humor en el marco, precisión en las reglas".
+  Los números (puntos, montos, fechas) van grandes y claros; la gracia va en
+  los colores y los nombres de los niveles, nunca en los números.
+*/
+
+/* ---------- Portada del club ---------- */
+.club-portada { background: var(--negro); color: var(--crema); overflow: hidden; }
+.club-portada__grilla { display: grid; gap: 20px; align-items: center; padding-top: 40px; padding-bottom: 48px; }
+.club-portada__deco { width: 150px; justify-self: end; }
+.club-subtitulo { margin-top: 44px; font-size: clamp(1.7rem, 5vw, 2.4rem); }
+
+/* ---------- Cómo funciona ---------- */
+.pasos { display: grid; gap: 12px; margin-bottom: 14px; }
+.pasos li { background: #fff; border-radius: var(--radio); padding: 18px 18px 18px 64px; position: relative; }
+.pasos__numero {
+  position: absolute; left: 16px; top: 16px; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--rosa); display: flex; align-items: center; justify-content: center;
+  font-family: var(--letra-display); font-size: 1rem; border: 2px solid var(--negro);
+}
+
+/* ---------- Niveles (colores propios, se repiten en la tarjeta del socio) ---------- */
+.niveles { display: grid; gap: 12px; }
+.nivel { border-radius: var(--radio); padding: 20px; border: 3px solid var(--negro); }
+.nivel h3 { font-family: var(--letra-display); font-weight: 400; text-transform: uppercase; font-size: 1.4rem; margin-bottom: 6px; }
+.nivel p { margin: 0; }
+.nivel__req { font-family: var(--letra-datos); font-size: .8rem; text-transform: uppercase; margin-bottom: 6px !important; }
+.nivel--pelo-crocante, .tarjeta-socio[data-nivel="pelo-crocante"] { background: var(--amarillo); }
+.nivel--tomasito, .tarjeta-socio[data-nivel="tomasito"] { background: var(--turquesa); }
+.nivel--comandante, .tarjeta-socio[data-nivel="comandante"] { background: var(--rosa); }
+
+/* ---------- Premios ---------- */
+.premios { display: grid; gap: 10px; }
+.premio, .premios--caja li {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+  background: #fff; border-radius: 16px; padding: 12px 16px;
+}
+.premio__puntos { font-family: var(--letra-datos); font-weight: 500; font-size: 1.2rem; min-width: 84px; }
+.premio__puntos small { font-size: .7rem; margin-left: 3px; }
+.premio__nombre { font-weight: 600; flex: 1; min-width: 150px; }
+.premio__estado { font-family: var(--letra-datos); font-size: .78rem; width: 100%; color: #5b4f5e; }
+.premio__estado--listo { color: var(--petroleo); font-weight: 500; }
+
+/* ---------- Formularios ---------- */
+.club-cuenta { max-width: 560px; }
+.panel-cuenta { background: var(--negro); color: var(--crema); border-radius: var(--radio); padding: 24px; }
+.panel-cuenta--claro { background: #fff; color: var(--negro); border: 3px solid var(--negro); }
+.pestanas { display: flex; gap: 6px; margin-bottom: 18px; background: rgba(255, 242, 223, .1); border-radius: 999px; padding: 4px; }
+.pestanas button {
+  flex: 1; min-height: 44px; border: 0; border-radius: 999px; background: transparent; color: var(--crema);
+  font: 600 1rem var(--letra-texto); cursor: pointer;
+}
+.pestanas button[aria-selected="true"] { background: var(--amarillo); color: var(--negro); }
+.formulario { display: grid; gap: 14px; }
+.formulario label { display: grid; gap: 6px; font-weight: 600; }
+.formulario label small { font-weight: 400; opacity: .8; }
+/* 16 px o más en los campos: si es menos, el iPhone hace zoom solo al tocar y desarma la pantalla. */
+.formulario input:not([type="checkbox"]), .formulario select, .caja select {
+  font: 1rem var(--letra-texto); min-height: 48px; padding: 10px 14px; border-radius: 12px;
+  border: 2px solid var(--negro); background: #fff; color: var(--negro); width: 100%;
+}
+.formulario .casilla { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
+.formulario .casilla input { width: 22px; height: 22px; margin-top: 2px; flex: none; accent-color: var(--amarillo); }
+.formulario .casilla a { color: var(--amarillo); }
+.panel-cuenta--claro .casilla a { color: var(--violeta-profundo); }
+.formulario--linea { grid-template-columns: 1fr; align-items: end; }
+.boton-texto {
+  background: none; border: 0; color: inherit; text-decoration: underline; font: inherit; cursor: pointer;
+  min-height: 44px; justify-self: start; padding: 0;
+}
+.boton--grande { min-height: 60px; font-size: 1.15rem; width: 100%; }
+.boton--apagado { background: #e5dccd; color: #8a7f8c; cursor: not-allowed; }
+
+/* Mensajes: verde para lo que salió bien, rojo para errores. Texto literal, sin humor. */
+.mensaje { margin: 0; font-weight: 600; min-height: 1.5em; }
+.mensaje--ok { color: #0f7a4a; }
+.mensaje--error { color: #b3261e; }
+.panel-cuenta:not(.panel-cuenta--claro) .mensaje--ok { color: #8ef0bf; }
+.panel-cuenta:not(.panel-cuenta--claro) .mensaje--error { color: #ffb4ab; }
+.mensaje--grande { font-size: 1.2rem; }
+.aviso--pendiente { border-left-color: var(--naranja); margin-bottom: 20px; color: var(--negro); }
+
+/* ---------- Tarjeta del socio ---------- */
+.club-mi-cuenta { max-width: 640px; }
+.tarjeta-socio {
+  border-radius: 26px; border: 4px solid var(--negro); padding: 22px; color: var(--negro);
+  box-shadow: 8px 8px 0 var(--negro);
+}
+.tarjeta-socio__arriba { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.tarjeta-socio__arriba img { width: 96px; }
+.tarjeta-socio__nombre { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.6rem; margin-bottom: 6px; }
+.tarjeta-socio__saldo { font-family: var(--letra-display); font-size: 3.4rem; line-height: 1; margin: 6px 0; }
+.tarjeta-socio__saldo small { font-family: var(--letra-datos); font-size: 1rem; }
+.tarjeta-socio__beneficio { font-weight: 600; }
+.tarjeta-socio__qr { display: flex; gap: 16px; align-items: center; background: #fff; border-radius: 18px; padding: 14px; margin: 14px 0; border: 3px solid var(--negro); }
+.tarjeta-socio__qr p { margin: 0; }
+.qr { width: 132px; flex: none; }
+.qr svg { width: 100%; height: auto; display: block; }
+.codigo { font-family: var(--letra-datos); font-weight: 500; font-size: 1.15rem; letter-spacing: .08em; }
+.tarjeta-socio__vence { font-size: .92rem; margin: 10px 0 0; }
+.progreso__barra { height: 14px; border-radius: 999px; background: rgba(20, 17, 22, .18); overflow: hidden; border: 2px solid var(--negro); }
+.progreso__barra span { display: block; height: 100%; width: 0; background: var(--negro); transition: width .6s ease; }
+.progreso__texto { font-size: .92rem; margin: 6px 0 0; }
+
+/* ---------- Historial ---------- */
+.historial { background: #fff; border-radius: var(--radio); padding: 6px 16px; }
+.historial__item {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 12px 0;
+  border-bottom: 1px solid #eee2d0;
+}
+.historial__item:last-child { border-bottom: 0; }
+.historial__fecha { font-family: var(--letra-datos); font-size: .78rem; color: #6b606e; grid-column: 1; }
+.historial__tipo { font-weight: 700; grid-column: 1; }
+.historial__detalle { font-size: .9rem; color: #4a3f4d; grid-column: 1; }
+.historial__puntos { grid-column: 2; grid-row: 1 / span 3; align-self: center; font-family: var(--letra-datos); font-weight: 500; font-size: 1.15rem; }
+.historial__item--compra .historial__puntos { color: #0f7a4a; }
+.historial__item--canje .historial__puntos, .historial__item--vencimiento .historial__puntos { color: #b3261e; }
+.historial__vacio { padding: 16px 0; }
+
+/* ---------- Caja (panel del personal) ---------- */
+.caja { background: var(--crema); }
+.caja__contenedor { max-width: 720px; padding-top: 12px; }
+.caja__barra {
+  display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between;
+  background: var(--negro); color: var(--crema); border-radius: 16px; padding: 12px 16px; margin-bottom: 18px;
+}
+.caja__barra label { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.caja__barra select { width: auto; min-height: 44px; }
+.caja__paso { background: #fff; border: 3px solid var(--negro); border-radius: var(--radio); padding: 20px; display: grid; gap: 14px; margin-bottom: 18px; }
+.caja__paso h2 { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.3rem; }
+.caja__socio { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--amarillo); border-radius: 16px; padding: 14px 16px; }
+.caja__socio p { margin: 0; }
+.caja__socio-nombre { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.4rem; }
+.caja__saldo { font-family: var(--letra-display); font-size: 2.2rem; text-align: right; line-height: 1; }
+.caja__saldo small { display: block; font-family: var(--letra-datos); font-size: .75rem; }
+.camara { display: grid; gap: 10px; }
+.camara video { width: 100%; max-height: 60vh; border-radius: 16px; background: #000; object-fit: cover; }
+.caja__admin { background: #f3ecff; }
+
+/* ---------- Textos legales ---------- */
+.texto-legal { max-width: 760px; }
+.texto-legal h2 { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.3rem; margin: 26px 0 8px; }
+.texto-legal ul { list-style: disc; padding-left: 22px; margin-bottom: 12px; }
+.texto-legal li { margin-bottom: 6px; }
+
+/* ---------- Pie del club ---------- */
+.pie__club { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; padding-top: 28px; padding-bottom: 12px; }
+.pie__club img { width: 120px; }
+.pie__club a { color: var(--crema); }
+
+@media (min-width: 700px) {
+  .club-portada__grilla { grid-template-columns: 1fr auto; }
+  .club-portada__deco { width: 220px; }
+  .pasos, .niveles { grid-template-columns: repeat(3, 1fr); }
+  .premios:not(.premios--caja) { grid-template-columns: repeat(2, 1fr); }
+  .formulario--linea { grid-template-columns: 1fr auto; }
+}
