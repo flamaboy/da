@@ -48,7 +48,7 @@ const url = "file://" + path.join(__dirname, PAGE) + "?render";
     "-vf", `tmix=frames=2:weights='1 1',fps=${OUT_FPS},format=yuv420p`,
     "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-profile:v", "high", "-level", "4.2",
     "-movflags", "+faststart",
-    ...(hasAudio ? ["-c:a", "aac", "-b:a", "192k", "-af", "loudnorm=I=-14:TP=-1:LRA=11", "-ar", "48000", "-shortest"] : []),
+    ...(hasAudio ? ["-c:a", "aac", "-b:a", "192k", "-af", "loudnorm=I=-14:TP=-1:LRA=11,alimiter=limit=0.84:level=false", "-ar", "48000", "-shortest"] : []),
     "-t", String(duration),
     outFile,
   ];

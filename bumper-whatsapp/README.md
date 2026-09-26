@@ -5,15 +5,15 @@ Hay dos piezas verticales de 1080×1920, H.264 + AAC a 30 fps, con el audio norm
 | Pieza | Público | Duración | Archivo |
 |---|---|---|---|
 | Bumper consumidor | Cliente final (Reels, Stories, TikTok) | 6 s | [`out/versa-whatsapp-bumper.mp4`](out/versa-whatsapp-bumper.mp4) |
-| Story B2B | Ferreterías y revendedores | 7 s | [`out/versa-whatsapp-b2b-stories.mp4`](out/versa-whatsapp-b2b-stories.mp4) |
+| Story B2B | Ferreterías y revendedores | 9 s | [`out/versa-whatsapp-b2b-stories-9s.mp4`](out/versa-whatsapp-b2b-stories-9s.mp4) |
 
 ## Story B2B para ferreterías (`b2b.html`)
 
 | Tiempo | Escena |
 |---|---|
-| 0 – 2,2 s | «¿Tenés una ferretería?» → «Sumá Versa a tu negocio», mientras una góndola se llena de cajas Versa al ritmo del beat |
-| 2,2 – 4,2 s | «Vendé con respaldo»: +25 años de trayectoria · Línea completa (eléctricas, neumáticas y jardín) · Servicio técnico |
-| 4,2 – 7 s | Cierre: «¿Querés ser revendedor?», el botón de WhatsApp con el número, el mensaje sugerido «Hola, tengo una ferretería 👋» y «te pasamos las condiciones comerciales» |
+| 0 – 3 s | «¿Tenés una ferretería?» → «Sumá Versa a tu negocio», mientras una góndola se llena de cajas Versa al ritmo del beat |
+| 3 – 6 s | «Vendé con respaldo»: +25 años de trayectoria · Línea completa (eléctricas, neumáticas y jardín) · Servicio técnico |
+| 6 – 9 s | Cierre: «¿Querés ser revendedor?», el botón de WhatsApp con el número, el mensaje sugerido «Hola, tengo una ferretería 👋» y «te pasamos las condiciones comerciales» |
 
 Los textos clave quedan dentro de la zona segura de Stories: se dejan libres unos 270 px arriba y 380 px abajo. Con `b2b.html?guides` se ven esas franjas marcadas.
 
@@ -37,7 +37,7 @@ python3 audio.py && python3 audio_b2b.py   # genera sfx.wav y sfx-b2b.wav
 npm i -g playwright                     # Chromium para renderizar
 export FFMPEG=/ruta/a/ffmpeg
 node render.js                                                                          # consumidor
-node render.js --page b2b.html --audio sfx-b2b.wav --out versa-whatsapp-b2b-stories.mp4  # B2B
+node render.js --page b2b.html --audio sfx-b2b.wav --out versa-whatsapp-b2b-stories-9s.mp4  # B2B
 ```
 
 `render.js` captura la animación a 60 fps y la exporta a 30 fps mezclando cuadros vecinos, lo que da un leve motion blur.

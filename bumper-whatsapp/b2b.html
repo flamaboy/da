@@ -274,7 +274,7 @@
 <script>
 (() => {
   const PHONE = "+54 9 11 3762-2288";   // +5491137622288
-  const DURATION = 7;
+  const DURATION = 9;
   const $ = (s) => document.querySelector(s);
   const qs = new URLSearchParams(location.search);
   const RENDER = qs.has("render");
@@ -340,44 +340,44 @@
     tl.set(".box", { autoAlpha: 0 }, 0);
 
     // cambio de titular: pregunta -> propuesta
-    tl.to(["#h1a", "#h1b"], { x: -160, autoAlpha: 0, duration: 0.12, ease: "power2.in" }, 1.08);
-    tl.fromTo("#h1c", { x: 520, skewX: 24, autoAlpha: 0 }, { x: 0, skewX: 0, autoAlpha: 1, duration: 0.26, ease: E.snap }, 1.2);
-    tl.fromTo("#h1d", { x: 520, skewX: 24, autoAlpha: 0 }, { x: 0, skewX: 0, autoAlpha: 1, duration: 0.26, ease: E.snap }, 1.3);
-    tl.fromTo("#shelf", { scale: 1 }, { scale: 1.04, duration: 0.5, ease: "sine.inOut", immediateRender: false }, 1.7);
+    tl.to(["#h1a", "#h1b"], { x: -160, autoAlpha: 0, duration: 0.12, ease: "power2.in" }, 1.48);
+    tl.fromTo("#h1c", { x: 520, skewX: 24, autoAlpha: 0 }, { x: 0, skewX: 0, autoAlpha: 1, duration: 0.26, ease: E.snap }, 1.6);
+    tl.fromTo("#h1d", { x: 520, skewX: 24, autoAlpha: 0 }, { x: 0, skewX: 0, autoAlpha: 1, duration: 0.26, ease: E.snap }, 1.7);
+    tl.fromTo("#shelf", { scale: 1 }, { scale: 1.04, duration: 0.9, ease: "sine.inOut", immediateRender: false }, 1.9);
 
     // transición: barrido rojo
-    tl.fromTo("#wipe1", { x: -2200, skewX: -14, autoAlpha: 1 }, { x: 0, duration: 0.24, ease: "power4.in" }, 1.96);
+    tl.fromTo("#wipe1", { x: -2200, skewX: -14, autoAlpha: 1 }, { x: 0, duration: 0.24, ease: "power4.in" }, 2.76);
 
-    /* ---------- ESCENA 2 (2.2 – 4.2s) ---------- */
-    tl.set("#s2", { autoAlpha: 1 }, 2.2);
-    tl.set(["#s1", "#wipe1"], { autoAlpha: 0 }, 2.2);
-    shake(2.2, 12);
-    tl.fromTo("#s2", { backgroundPosition: "0px 0px" }, { backgroundPosition: "240px 0px", duration: 2, ease: "none" }, 2.2);
-    tl.fromTo("#h2a", { scale: 1.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.22, ease: E.snap }, 2.2);
-    tl.fromTo("#h2b .tag", { xPercent: -140, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.26, ease: E.snap }, 2.28);
-    tl.fromTo("#logo2", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.25 }, 2.35);
+    /* ---------- ESCENA 2 (3 – 6s) ---------- */
+    tl.set("#s2", { autoAlpha: 1 }, 3.0);
+    tl.set(["#s1", "#wipe1"], { autoAlpha: 0 }, 3.0);
+    shake(3.0, 12);
+    tl.fromTo("#s2", { backgroundPosition: "0px 0px" }, { backgroundPosition: "360px 0px", duration: 3, ease: "none" }, 3.0);
+    tl.fromTo("#h2a", { scale: 1.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.22, ease: E.snap }, 3.0);
+    tl.fromTo("#h2b .tag", { xPercent: -140, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.26, ease: E.snap }, 3.08);
+    tl.fromTo("#logo2", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.25 }, 3.15);
 
-    [["#c1", 2.4, -1], ["#c2", 2.8, 1], ["#c3", 3.2, -1]].forEach(([id, t, dir]) => {
+    [["#c1", 3.4, -1], ["#c2", 4.0, 1], ["#c3", 4.6, -1]].forEach(([id, t, dir]) => {
       tl.fromTo(id, { x: 1200 * dir, skewX: -16 * dir, autoAlpha: 0 }, { x: 0, skewX: 0, autoAlpha: 1, duration: 0.3, ease: E.snap }, t);
       tl.fromTo(`${id} .badge`, { scale: 0.3, rotation: -90 * dir }, { scale: 1, rotation: 0, duration: 0.42, ease: E.back }, t + 0.06);
     });
     const counter = { v: 0 };
     tl.fromTo(counter, { v: 0 }, { v: 25, duration: 0.45, ease: "power2.out",
-      onUpdate: () => { $("#count").textContent = "+" + Math.round(counter.v); } }, 2.46);
-    tl.to(["#c1", "#c2", "#c3"], { y: -8, duration: 0.5, ease: "sine.inOut", stagger: 0.05 }, 3.5);
+      onUpdate: () => { $("#count").textContent = "+" + Math.round(counter.v); } }, 3.46);
+    tl.to(["#c1", "#c2", "#c3"], { y: -8, duration: 0.5, ease: "sine.inOut", stagger: 0.05 }, 5.2);
 
-    /* ---------- ESCENA 3 (4.2 – 7s) ---------- */
-    tl.fromTo("#wipe2", { x: 1900, skewX: -14, autoAlpha: 1 }, { x: 0, duration: 0.24, ease: "power4.in" }, 3.96);
-    tl.set("#s3", { autoAlpha: 1 }, 4.2);
-    tl.set(["#s2", "#wipe2"], { autoAlpha: 0 }, 4.2);
-    shake(4.2, 18);
-    tl.fromTo("#logo-big", { scale: 1.9, autoAlpha: 0, skewX: -10 }, { scale: 1, autoAlpha: 1, skewX: 0, duration: 0.3, ease: E.snap }, 4.2);
-    tl.fromTo("#foot-band", { yPercent: 100 }, { yPercent: 0, duration: 0.3, ease: E.snap }, 4.24);
-    tl.fromTo("#kicker", { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.26 }, 4.31);
-    tl.fromTo("#pill-wrap", { scaleX: 0.18, scaleY: 0.9, autoAlpha: 0 }, { scaleX: 1, scaleY: 1, autoAlpha: 1, duration: 0.32, ease: "back.out(1.6)" }, 4.4);
-    tl.fromTo("#pill .wa-ico", { rotation: -120, scale: 0.4 }, { rotation: 0, scale: 1, duration: 0.4, ease: E.back }, 4.44);
+    /* ---------- ESCENA 3 (6 – 9s) ---------- */
+    tl.fromTo("#wipe2", { x: 1900, skewX: -14, autoAlpha: 1 }, { x: 0, duration: 0.24, ease: "power4.in" }, 5.76);
+    tl.set("#s3", { autoAlpha: 1 }, 6.0);
+    tl.set(["#s2", "#wipe2"], { autoAlpha: 0 }, 6.0);
+    shake(6.0, 18);
+    tl.fromTo("#logo-big", { scale: 1.9, autoAlpha: 0, skewX: -10 }, { scale: 1, autoAlpha: 1, skewX: 0, duration: 0.3, ease: E.snap }, 6.0);
+    tl.fromTo("#foot-band", { yPercent: 100 }, { yPercent: 0, duration: 0.3, ease: E.snap }, 6.04);
+    tl.fromTo("#kicker", { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.26 }, 6.11);
+    tl.fromTo("#pill-wrap", { scaleX: 0.18, scaleY: 0.9, autoAlpha: 0 }, { scaleX: 1, scaleY: 1, autoAlpha: 1, duration: 0.32, ease: "back.out(1.6)" }, 6.2);
+    tl.fromTo("#pill .wa-ico", { rotation: -120, scale: 0.4 }, { rotation: 0, scale: 1, duration: 0.4, ease: E.back }, 6.24);
 
-    const typeStart = 4.55, perChar = 0.022;
+    const typeStart = 6.35, perChar = 0.022;
     const typer = { n: 0 };
     tl.fromTo(typer, { n: 0 }, {
       n: PHONE.length, duration: PHONE.length * perChar, ease: "none",
@@ -393,7 +393,7 @@
     tl.set(["#ring1", "#ring2"], { opacity: 0 }, 0);
     tl.fromTo("#bubble", { scale: 0.2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.26, ease: E.back }, typeEnd + 0.22);
     tl.fromTo("#sub", { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, typeEnd + 0.4);
-    tl.fromTo("#logo-big", { y: 0 }, { y: -8, duration: 2.45, ease: "sine.inOut", immediateRender: false }, 4.55);
+    tl.fromTo("#logo-big", { y: 0 }, { y: -8, duration: 2.65, ease: "sine.inOut", immediateRender: false }, 6.35);
     tl.set({}, {}, DURATION);
 
     window.DURATION = DURATION;
