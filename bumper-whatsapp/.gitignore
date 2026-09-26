@@ -1,0 +1,4 @@
+node_modules/
+sfx.wav
+out/*
+!out/versa-whatsapp-bumper.mp4
