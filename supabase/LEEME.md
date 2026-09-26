@@ -4,7 +4,9 @@ Estos archivos crean la base de datos del club, en orden:
 
 1. `migraciones/001_club_de_puntos.sql`: tablas, reglas del programa y permisos.
 2. `migraciones/002_vencimiento_diario.sql`: el vencimiento automático de puntos.
-3. `pruebas/pruebas_seguridad.sql`: comprueba que nadie pueda sumarse puntos
+3. `migraciones/003_newsletter.sql`: el permiso aparte para recibir novedades
+   por mail y la descarga de mails para administradores.
+4. `pruebas/pruebas_seguridad.sql`: comprueba que nadie pueda sumarse puntos
    solo ni ver datos de otro socio.
 
 Se aplican una sola vez, en el proyecto de Supabase **burgercouple-club**.

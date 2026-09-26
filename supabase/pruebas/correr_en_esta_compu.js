@@ -15,8 +15,14 @@ const fs = require('fs');
     grant execute on function auth.uid() to anon, authenticated;
     grant usage on schema public to anon, authenticated;
   `);
-  await db.exec(fs.readFileSync(require('path').join(__dirname, '..', 'migraciones', '001_club_de_puntos.sql'), 'utf8'));
-  console.log('Migración 001 aplicada sin errores.');
+  // Se aplican todas las migraciones en orden, menos la del vencimiento diario
+  // (usa pg_cron, que solo existe en Supabase de verdad).
+  const carpeta = require('path').join(__dirname, '..', 'migraciones');
+  for (const archivo of fs.readdirSync(carpeta).sort()) {
+    if (!archivo.endsWith('.sql') || archivo.includes('vencimiento_diario')) continue;
+    await db.exec(fs.readFileSync(require('path').join(carpeta, archivo), 'utf8'));
+    console.log('Migración aplicada sin errores: ' + archivo);
+  }
   const res = await db.exec(fs.readFileSync(require('path').join(__dirname, 'pruebas_seguridad.sql'), 'utf8'));
   const tabla = res.find(r => r.fields && r.fields.some(f => f.name === 'prueba'));
   let fallas = 0;

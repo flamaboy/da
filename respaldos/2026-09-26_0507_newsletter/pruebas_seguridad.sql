@@ -39,7 +39,7 @@ grant execute on all functions in schema pruebas to anon, authenticated;
 
 -- Usuarios de prueba: dos socios, un cajero y un administrador.
 insert into auth.users (id, email, raw_user_meta_data) values
-  ('00000000-0000-0000-0000-00000000000a', 'socia.a@prueba.test', '{"nombre":"Socia A","acepta_bases":"true","acepta_novedades":"true"}'),
+  ('00000000-0000-0000-0000-00000000000a', 'socia.a@prueba.test', '{"nombre":"Socia A","acepta_bases":"true"}'),
   ('00000000-0000-0000-0000-00000000000b', 'socio.b@prueba.test', '{"nombre":"Socio B"}'),
   ('00000000-0000-0000-0000-00000000000c', 'cajero@prueba.test', '{"nombre":"Cajero"}'),
   ('00000000-0000-0000-0000-00000000000d', 'admin@prueba.test', '{"nombre":"Admin"}');
@@ -250,61 +250,6 @@ begin
     perform pruebas.anotar('Nadie puede editar el historial (ni el dueño de la base)', false, 'pudo');
   exception when others then perform pruebas.anotar('Nadie puede editar el historial (ni el dueño de la base)', true, sqlerrm); end;
 end $$;
-
--- ------------------------------------------------------------ Newsletter (consentimiento aparte)
-do $$
-begin
-  perform pruebas.anotar('Newsletter: quien marcó la casilla al registrarse queda suscripto',
-    (select acepta_novedades and novedades_cambiado_at is not null from public.socios where id = '00000000-0000-0000-0000-00000000000a'));
-  perform pruebas.anotar('Newsletter: quien NO la marcó NO queda suscripto (arranca destildada)',
-    not (select acepta_novedades from public.socios where id = '00000000-0000-0000-0000-00000000000b'));
-end $$;
-
-select pruebas.como('00000000-0000-0000-0000-00000000000b');
-do $$
-begin
-  perform public.cambiar_novedades(true);
-  perform pruebas.anotar('Newsletter: el socio puede suscribirse desde su tarjeta', (select acepta_novedades from public.socios));
-  begin
-    perform * from public.exportar_suscriptos();
-    perform pruebas.anotar('Newsletter: un socio NO puede descargar la lista de mails', false, 'pudo');
-  exception when others then perform pruebas.anotar('Newsletter: un socio NO puede descargar la lista de mails', true, sqlerrm); end;
-  begin
-    update public.socios set acepta_novedades = false where id = '00000000-0000-0000-0000-00000000000a';
-    perform pruebas.anotar('Newsletter: un socio NO puede cambiar la suscripción de otro', false, 'pudo');
-  exception when others then perform pruebas.anotar('Newsletter: un socio NO puede cambiar la suscripción de otro', true, sqlerrm); end;
-end $$;
-select pruebas.volver();
-
-select pruebas.como('00000000-0000-0000-0000-00000000000c');
-do $$
-begin
-  perform * from public.exportar_suscriptos();
-  perform pruebas.anotar('Newsletter: un cajero NO puede descargar la lista de mails', false, 'pudo');
-exception when others then perform pruebas.anotar('Newsletter: un cajero NO puede descargar la lista de mails', true, sqlerrm);
-end $$;
-select pruebas.volver();
-
-select pruebas.como('00000000-0000-0000-0000-00000000000d');
-do $$
-declare n int;
-begin
-  select count(*) into n from public.exportar_suscriptos();
-  perform pruebas.anotar('Newsletter: el admin descarga solo los suscriptos (2)', n = 2, n || ' mails');
-end $$;
-select pruebas.volver();
-
-select pruebas.como('00000000-0000-0000-0000-00000000000b');
-select public.cambiar_novedades(false);
-select pruebas.volver();
-select pruebas.como('00000000-0000-0000-0000-00000000000d');
-do $$
-declare n int;
-begin
-  select count(*) into n from public.exportar_suscriptos();
-  perform pruebas.anotar('Newsletter: quien se da de baja sale de la lista (1)', n = 1, n || ' mails');
-end $$;
-select pruebas.volver();
 
 select n, ok, prueba, detalle from pruebas.resultados order by n;
 rollback;

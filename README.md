@@ -65,6 +65,12 @@ todavía no tenemos. Está así a propósito, para que nadie lo tome como real.
   También se canjean premios. Los administradores habilitan o quitan cajeros.
 - **`/club/bases.html` y `/club/privacidad.html`**: BORRADORES para que los
   revise un abogado.
+- **Newsletter:** al registrarse hay una casilla **aparte y destildada** para
+  recibir novedades por mail. El socio la puede cambiar cuando quiera desde su
+  tarjeta. En el panel de caja, los administradores tienen el botón
+  **"Descargar mails del newsletter"**, que baja un archivo para Excel con
+  **solo** los que aceptaron. Por qué así: aceptar las bases del club no es
+  aceptar publicidad (ley 25.326), y mandar mails sin permiso termina en spam.
 
 **Reglas del programa:**
 - 10 puntos por cada $1.000, y doble puntos en la primera compra.
@@ -85,7 +91,7 @@ Supabase, en un proyecto **separado de BC OS**. La base guarda cada movimiento
 cada punto tiene explicación. El cliente solo puede **mirar** lo suyo; los
 puntos los suma únicamente el servidor, después de comprobar que quien los
 carga es personal habilitado. La web nunca decide cuántos puntos se suman.
-Todo está en `supabase/`, con 37 pruebas de seguridad que pasan todas.
+Todo está en `supabase/`, con 45 pruebas de seguridad que pasan todas.
 
 ---
 
@@ -318,3 +324,6 @@ Antes de cada tanda de cambios, Claude copia lo que va a tocar a
   pruebas de seguridad), todavía sin conectar: la creación del proyecto en
   Supabase no respondió desde acá. "Club" reemplaza a "Historia" en el menú de
   arriba. Respaldo en `respaldos/2026-09-26_*_club-de-puntos/`.
+- **26/09/2026**: newsletter con consentimiento aparte (casilla en el registro,
+  interruptor en la tarjeta, descarga de mails para administradores). 45
+  pruebas. Respaldo en `respaldos/2026-09-26_*_newsletter/`.

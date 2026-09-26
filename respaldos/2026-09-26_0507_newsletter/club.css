@@ -140,11 +140,6 @@
 .camara video { width: 100%; max-height: 60vh; border-radius: 16px; background: #000; object-fit: cover; }
 .caja__admin { background: #f3ecff; }
 
-/* ---------- Interruptor de novedades ---------- */
-.interruptor { display: flex; gap: 12px; align-items: flex-start; background: #fff; border-radius: 16px; padding: 16px; font-weight: 600; cursor: pointer; }
-.interruptor input { width: 24px; height: 24px; flex: none; accent-color: var(--violeta-profundo); margin-top: 1px; }
-.caja__admin h3 { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.1rem; }
-
 /* ---------- Textos legales ---------- */
 .texto-legal { max-width: 760px; }
 .texto-legal h2 { font-family: var(--letra-titulos); font-weight: 800; font-size: 1.3rem; margin: 26px 0 8px; }

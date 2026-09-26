@@ -115,7 +115,7 @@
         email: f.email.value.trim(),
         password: f.password.value,
         options: {
-          data: { nombre: f.nombre.value.trim(), acepta_bases: 'true', acepta_novedades: f.novedades.checked ? 'true' : 'false' },
+          data: { nombre: f.nombre.value.trim(), acepta_bases: 'true' },
           emailRedirectTo: base() + '/club/mi-cuenta.html'
         }
       }).then(function (r) {
@@ -159,7 +159,6 @@
       return sb.rpc('mi_resumen').then(function (res) {
         if (res.error) { mensaje($('#msg-cuenta'), errorLegible(res.error), 'error'); return; }
         pintarTarjeta(res.data);
-        prepararNovedades(res.data.acepta_novedades);
         cargarPremios($('#lista-premios'), res.data.saldo, res.data.nivel);
         return sb.from('movimientos').select('tipo,puntos,monto_pesos,motivo,creado_at,local_id')
           .order('creado_at', { ascending: false }).limit(50).then(pintarHistorial);
@@ -201,22 +200,6 @@
       qr.make();
       $('#t-qr').innerHTML = qr.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
     }
-  }
-
-  // Interruptor de novedades: el cambio se guarda apenas se toca, con fecha,
-  // y si falla se vuelve a la posición anterior para no mostrar algo falso.
-  function prepararNovedades(activo) {
-    var casilla = $('#novedades'), msg = $('#msg-novedades');
-    casilla.checked = !!activo;
-    casilla.addEventListener('change', function () {
-      var quiere = casilla.checked;
-      casilla.disabled = true;
-      sb.rpc('cambiar_novedades', { p_acepta: quiere }).then(function (r) {
-        casilla.disabled = false;
-        if (r.error) { casilla.checked = !quiere; mensaje(msg, errorLegible(r.error), 'error'); return; }
-        mensaje(msg, quiere ? 'Listo: vas a recibir nuestras novedades.' : 'Listo: no te vamos a mandar más novedades.', 'ok');
-      });
-    });
   }
 
   function pintarHistorial(r) {
@@ -313,7 +296,6 @@
       sb.rpc('alta_personal', { p_email: f.email.value.trim(), p_nombre: f.nombre.value.trim(), p_rol: f.rol.value, p_local: f.local.value })
         .then(function (r) { mensaje(msg, r.error ? errorLegible(r.error) : 'Listo: ya puede usar el panel de caja.', r.error ? 'error' : 'ok'); if (!r.error) f.reset(); });
     });
-    $('#boton-exportar').addEventListener('click', exportarSuscriptos);
     $('#form-baja').addEventListener('submit', function (ev) {
       ev.preventDefault();
       var f = ev.target, msg = $('#msg-baja');
@@ -409,29 +391,6 @@
     $('#paso-buscar').hidden = false;
     $('#form-codigo').reset();
     ['#msg-socio', '#msg-compra', '#msg-canje'].forEach(function (s) { mensaje($(s), ''); });
-  }
-
-  // Descarga de mails para el newsletter (solo administradores: la base de
-  // datos rechaza el pedido si no lo es). Sale separado por ";" y con la marca
-  // BOM al principio, que es lo que necesita Excel en castellano para abrirlo
-  // bien, con acentos y en columnas.
-  function exportarSuscriptos() {
-    var msg = $('#msg-exportar');
-    mensaje(msg, 'Preparando el archivo…');
-    sb.rpc('exportar_suscriptos').then(function (r) {
-      if (r.error) { mensaje(msg, errorLegible(r.error), 'error'); return; }
-      var filas = r.data || [];
-      var celda = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
-      var csv = ['Nombre;Mail;Aceptó el;Nivel'].concat(filas.map(function (f) {
-        return [f.nombre, f.email, f.acepto_el ? new Date(f.acepto_el).toLocaleDateString('es-AR') : '', (NIVELES[f.nivel] || {}).nombre || f.nivel].map(celda).join(';');
-      })).join('\r\n');
-      var archivo = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
-      var enlace = document.createElement('a');
-      enlace.href = URL.createObjectURL(archivo);
-      enlace.download = 'newsletter-burger-couple-' + new Date().toISOString().slice(0, 10) + '.csv';
-      document.body.appendChild(enlace); enlace.click(); enlace.remove();
-      mensaje(msg, 'Listo: ' + filas.length + (filas.length === 1 ? ' mail descargado.' : ' mails descargados.'), 'ok');
-    });
   }
 
   // Escáner con la cámara: se prende solo cuando el cajero lo pide y se apaga
