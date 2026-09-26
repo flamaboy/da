@@ -44,7 +44,6 @@
 <link rel="preload" href="/fuentes/erica-one.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fuentes/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/estilos.css">
-<script src="/juegos.js" defer></script>
 
 <!--
   Datos estructurados: le dicen a Google, en su idioma, que esto es un grupo de
@@ -105,7 +104,7 @@
     <div class="damero damero--rosa" aria-hidden="true"></div>
     <div class="contenedor portada__grilla">
       <div class="portada__texto">
-        <p class="rotulo">Smash burgers · Buenos Aires · Desde 2020</p>
+        <p class="rotulo">Canal Fetiche · En vivo desde 2020</p>
         <h1 id="titulo-portada" class="portada__titulo">Burgers para <span>fetichistas</span></h1>
         <p class="portada__bajada">Smash burgers en Caballito, Belgrano, Palermo Soho, Boedo y Recoleta. Producto serio, relato delirante.</p>
         <div class="portada__acciones">
@@ -115,9 +114,9 @@
       </div>
       <div class="portada__arte" aria-hidden="true">
         <!--
-          Ilustración de la carta de Los 90's, adentro de un marco turquesa.
-          El marco es necesario: el traje negro de la ilustración se perdía
-          contra el fondo negro de la portada.
+          Ilustración de la carta de Los 90's, adentro de un marco turquesa que
+          imita una pantalla de televisión. El marco es necesario: el traje negro de
+          la ilustración se perdía contra el fondo negro de la portada.
           Va esta y no una foto de hamburguesa porque es la imagen más grande que
           tenemos (720 px); las fotos de la carta son chicas y en grande se verían
           borrosas. Cuando lleguen las fotos originales, se puede reconsiderar.
@@ -132,7 +131,7 @@
   </section>
 
   <!--
-    Cinta de frases de la marca que se desplaza.
+    Cinta que se mueve como zócalo de televisión. Es el "zapping porteño" del PDF.
     Si el celular tiene activado "reducir movimiento", queda quieta (ver estilos.css).
   -->
   <div class="cinta" aria-hidden="true">
@@ -164,7 +163,7 @@
       -->
       <p class="seccion__bajada">Todas vienen con el mejor pan de papa, carne de 120 g y papas fritas. Precios actualizados en Rappi y en la carta de cada local.</p>
 
-      <h3 class="subtitulo"><span>Los patices</span> <span class="deco deco--amarillo deco--lleno" aria-hidden="true"><img src="/imagenes/ilus-musculoso.webp" alt="" width="292" height="640" loading="lazy"></span></h3>
+      <h3 class="subtitulo">Los patices</h3>
       <ul class="grilla-burgers">
         <li class="burger">
           <img class="burger__foto" src="/imagenes/burger-cheese.webp" alt="Hamburguesa Cheese" width="233" height="141" loading="lazy">
@@ -273,14 +272,6 @@
 
   <!-- ============ LOCALES ============ -->
   <!--
-    Cada local tiene una "escena" que lo representa, con un juego al tocarla
-    (pedido de Mati): la puerta de La Mansión se abre, en La Tercera la copa hace
-    el gesto del Dibu, en Los 90's se prende una tele de tubo con el mapa y en
-    Boedo va la foto de los comienzos. Los dibujos están hechos a mano con código
-    (no son fotos de internet): pesan casi nada y no tienen problemas de derechos.
-    Si el juego falla o el navegador es viejo, la tarjeta igual muestra todos los
-    datos y el botón "Cómo llegar": el juego es un extra, nunca la única forma.
-
     Cada local tiene su color, igual que su carta impresa (La Mansión violeta,
     La Tercera celeste, Los 90's naranja). Boedo y Recoleta todavía no tienen carta
     propia: les asignamos turquesa y amarillo de la paleta de marca para que no se repitan.
@@ -298,22 +289,7 @@
       <ul class="locales">
 
         <li class="local local--violeta">
-          <div class="escena escena--mansion">
-            <div class="mansion__frontis" aria-hidden="true">
-              <img src="/imagenes/logo-la-mansion.svg" alt="" width="160" height="116" loading="lazy">
-            </div>
-            <span class="mansion__columna mansion__columna--izq" aria-hidden="true"></span>
-            <span class="mansion__columna mansion__columna--der" aria-hidden="true"></span>
-            <button class="mansion__puerta" type="button" data-juego="mansion" aria-pressed="false" aria-label="Abrir la puerta de La Mansión">
-              <span class="mansion__interior">
-                <img src="/imagenes/burger-cheese.webp" alt="" width="233" height="141" loading="lazy">
-                <span>Pasá, estás en tu casa</span>
-              </span>
-              <span class="mansion__hoja mansion__hoja--izq"></span>
-              <span class="mansion__hoja mansion__hoja--der"></span>
-            </button>
-            <span class="escena__pista" aria-hidden="true" data-pista="Tocá la puerta" data-pista-activa="Cerrar la puerta">Tocá la puerta</span>
-          </div>
+          <img class="local__logo" src="/imagenes/logo-la-mansion.svg" alt="" width="160" height="116" loading="lazy">
           <p class="local__barrio">Hamburguesas en Caballito</p>
           <h3 class="local__nombre">La Mansión</h3>
           <p class="local__direccion">Hualfín 894</p>
@@ -325,32 +301,7 @@
         </li>
 
         <li class="local local--celeste">
-          <div class="escena escena--tercera">
-            <img class="tercera__logo" src="/imagenes/logo-la-tercera.svg" alt="" width="160" height="130" loading="lazy">
-            <!-- Camiseta con el 23, cortada a la altura de los hombros: sin cara, así no es un retrato de nadie. -->
-            <svg class="tercera__jugador" viewBox="0 0 200 200" aria-hidden="true">
-              <defs>
-                <pattern id="rayas-seleccion" width="28" height="10" patternUnits="userSpaceOnUse">
-                  <rect width="14" height="10" fill="#FFFFFF"/><rect x="14" width="14" height="10" fill="#8CC8EE"/>
-                </pattern>
-              </defs>
-              <path d="M30 0 L170 0 L196 60 L166 74 L160 60 L160 150 L40 150 L40 60 L34 74 L4 60 Z" fill="url(#rayas-seleccion)" stroke="#141116" stroke-width="4"/>
-              <text x="100" y="95" text-anchor="middle" font-family="Erica One, Arial Black, sans-serif" font-size="46" fill="#141116">23</text>
-              <path d="M40 150 L160 150 L166 200 L34 200 Z" fill="#141116"/>
-            </svg>
-            <button class="tercera__copa" type="button" data-juego="tercera" aria-pressed="false" aria-label="Tocar la copa: el gesto del Dibu">
-              <!-- Guante dorado sobre una base: un trofeo genérico dibujado a mano, no el trofeo oficial. -->
-              <svg viewBox="0 0 80 110" aria-hidden="true">
-                <path d="M22 70 L22 30 Q22 24 28 24 Q33 24 33 30 L33 16 Q33 10 39 10 Q45 10 45 16 L45 20 Q45 14 51 14 Q57 14 57 20 L57 30 Q57 25 62 25 Q67 25 67 31 L67 60 Q67 74 56 78 L28 78 Q22 76 22 70 Z" fill="#FFC654" stroke="#141116" stroke-width="3"/>
-                <path d="M8 44 Q10 36 18 40 L24 56 L22 66 Z" fill="#FFC654" stroke="#141116" stroke-width="3"/>
-                <rect x="24" y="78" width="36" height="10" fill="#ED8A4C" stroke="#141116" stroke-width="3"/>
-                <rect x="16" y="88" width="52" height="18" rx="3" fill="#141116"/>
-                <rect x="24" y="93" width="36" height="8" fill="#FFC654"/>
-              </svg>
-            </button>
-            <span class="tercera__globo" aria-hidden="true">¿Qué mirás, bobo?</span>
-            <span class="escena__pista" aria-hidden="true" data-pista="Tocá la copa" data-pista-activa="Otra vez">Tocá la copa</span>
-          </div>
+          <img class="local__logo" src="/imagenes/logo-la-tercera.svg" alt="" width="160" height="130" loading="lazy">
           <p class="local__barrio">Hamburguesas en Belgrano</p>
           <h3 class="local__nombre">La Tercera</h3>
           <p class="local__direccion">Zapiola 2115</p>
@@ -362,26 +313,7 @@
         </li>
 
         <li class="local local--naranja">
-          <div class="escena escena--90s">
-            <div class="tele">
-              <div class="tele__pantalla">
-                <!--
-                  El mapa se carga recién cuando alguien aprieta ON: un mapa de Google
-                  pesa bastante, y así no hace más lenta la página para todos los demás.
-                -->
-                <div class="tele__mapa" data-mapa="https://www.google.com/maps?q=Burger%20Couple%20Honduras%205221%20Palermo%20Buenos%20Aires&amp;output=embed"></div>
-                <span class="tele__encendido" aria-hidden="true"></span>
-                <span class="tele__brillo" aria-hidden="true"></span>
-              </div>
-              <div class="tele__panel">
-                <span class="tele__perilla" aria-hidden="true"></span>
-                <span class="tele__perilla" aria-hidden="true"></span>
-                <button class="tele__on" type="button" data-juego="90s" aria-pressed="false" aria-label="Prender la tele para ver cómo llegar a Los 90's">ON</button>
-              </div>
-            </div>
-            <span class="tele__patas" aria-hidden="true"></span>
-            <span class="escena__pista" aria-hidden="true" data-pista="Apretá ON" data-pista-activa="Apretá OFF para apagar">Apretá ON</span>
-          </div>
+          <img class="local__logo" src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
           <p class="local__barrio">Hamburguesas en Palermo Soho</p>
           <h3 class="local__nombre">Los 90's</h3>
           <p class="local__direccion">Honduras 5221</p>
@@ -394,16 +326,7 @@
 
         <!-- Boedo: local nuevo. Mati pidió mostrarlo como abierto aunque todavía no se inauguró oficialmente. -->
         <li class="local local--turquesa">
-          <!-- Boedo es "el origen": ahí abrió el primer local en 2021. -->
-          <div class="escena escena--boedo">
-            <figure class="polaroid">
-              <div class="polaroid__foto">
-                <!-- Acá va la foto de Víctor y Dana en sus comienzos, cuando Mati la pase. -->
-                <span class="pendiente pendiente--claro">Foto de los comienzos · pendiente</span>
-              </div>
-              <figcaption>Donde empezó todo</figcaption>
-            </figure>
-          </div>
+          <img class="local__logo" src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
           <span class="capsula">Nuevo</span>
           <p class="local__barrio">Hamburguesas en Boedo</p>
           <h3 class="local__nombre">Boedo</h3>
@@ -418,10 +341,7 @@
 
         <!-- Recoleta: cerrado por refacciones. Sin horarios ni botón de pedir, para que nadie vaya. -->
         <li class="local local--amarillo local--cerrado">
-          <div class="escena escena--recoleta" aria-hidden="true">
-            <img src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
-            <span class="cinta-obra">Cerrado por refacciones</span>
-          </div>
+          <img class="local__logo" src="/imagenes/logo-burger-couple.svg" alt="" width="160" height="90" loading="lazy">
           <span class="capsula capsula--negra">Cerrado temporalmente</span>
           <p class="local__barrio">Hamburguesas en Recoleta</p>
           <h3 class="local__nombre">Recoleta Express</h3>

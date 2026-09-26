@@ -13,25 +13,14 @@ _Última actualización: 25/09/2026._
 Es una sola página, larga, pensada primero para el celular. De arriba abajo:
 
 1. **Portada**: "Burgers para fetichistas", con la ilustración del brindis
-   dentro de un marco turquesa, y dos botones: *Ver los ejemplares*
+   dentro de un marco tipo pantalla de TV, y dos botones: *Ver los ejemplares*
    (baja al menú) y *Pedir por Rappi* (baja a los locales).
-2. **Cinta que se mueve** con frases de la marca.
+2. **Cinta que se mueve** tipo zócalo de televisión, con frases de la marca.
 3. **Menú** ("Los ejemplares"): todas las hamburguesas con sus ingredientes,
    copiados de la carta de junio de 2026. **Sin precios** (ver decisiones).
    También la Box, el menú almuerzo, las entradas y el Menú La Bendi, y un
    aviso de alérgenos.
-4. **Locales**: cada uno con su "escena", un dibujo que lo representa y
-   que reacciona al tocarlo:
-   - **La Mansión**: una casona; al tocar la puerta, se abre.
-   - **La Tercera**: la camiseta con el 23; al tocar la copa, hace el gesto
-     del Dibu y aparece "¿Qué mirás, bobo?".
-   - **Los 90's**: una tele de tubo; al apretar ON se prende (con la animación
-     de las teles viejas) y muestra el mapa de Google para llegar.
-   - **Boedo** (el origen): una polaroid para la foto de Víctor y Dana en sus
-     comienzos (FOTO PENDIENTE).
-   - **Recoleta**: una cinta de obra de "cerrado por refacciones".
-
-   Debajo de cada escena, los datos del local: los cinco, cada uno con su color, su dirección y un botón
+4. **Locales**: los cinco, cada uno con su color, su dirección y un botón
    *Cómo llegar* que abre Google Maps. Recoleta figura como cerrado por
    refacciones. Boedo figura como abierto, con la etiqueta "Nuevo".
 5. **Historia**: Víctor y Dana, Loco Piña y la línea de tiempo desde 2017.
@@ -148,10 +137,7 @@ y el token nunca salen a internet.
 | **Ilustraciones como figuritas repartidas, no en una franja aparte** | Mati prefirió que decoren toda la página. Van en círculos (el motivo "duotono" del PDF) que las recortan, así nunca tapan textos ni botones. |
 | **Loco Piña sin foto** | Ninguna ilustración de la carta es seguro que sea Víctor. Cuando haya una foto aprobada, se agrega. |
 | **Tipografías servidas desde nuestra web** | Evita conectarse a Google Fonts: con mala señal, cada conexión de más se nota. |
-| **Muy poco JavaScript (`juegos.js`)** | Solo para los juegos de los locales. La página funciona entera sin él: si fallara, se ven igual todos los datos y el botón "Cómo llegar". |
-| **Escenas dibujadas con código, no fotos de internet** | Las fotos de internet tienen dueño (medios, fotógrafos, FIFA) y pesan mucho. Los dibujos son propios y cargan al instante. |
-| **El mapa de Los 90's se carga recién al apretar ON** | Un mapa de Google es pesado; así no hace lenta la página para quien no lo usa. |
-| **Sin la idea de "canal de TV porteño"** | A Mati no le gustaba cómo quedaba. Se sacó del texto de la portada y de la cinta. |
+| **Nada de JavaScript** | La página no necesita ningún programa para funcionar: carga más rápido y anda en cualquier celular. |
 | **La cinta se queda quieta si el celular pide "reducir movimiento"** | Accesibilidad: lo pide el PDF de marca. |
 | **Horarios y teléfonos no se le informan a Google hasta confirmarlos** | Si le damos un dato falso, Google lo muestra en grande. |
 
@@ -170,7 +156,6 @@ y el token nunca salen a internet.
       algo blandas.
 - [ ] Logo maestro del diseñador (SVG o AI).
 - [ ] Información de alérgenos por producto (hoy hay un aviso general).
-- [ ] Foto de Víctor y Dana en sus comienzos, para la polaroid de Boedo.
 
 **Publicación:**
 - [ ] Crear el token de Cloudflare y hacer la primera publicación.
@@ -250,8 +235,3 @@ Antes de cada tanda de cambios, Claude copia lo que va a tocar a
 - **25/09/2026**: se sacó la franja "Canal Fetiche"; sus seis ilustraciones
   quedaron repartidas por la página como figuritas. Respaldo en
   `respaldos/2026-09-25_*_quitar-canal-fetiche/`.
-- **26/09/2026**: cada local tiene su escena interactiva (puerta de La
-  Mansión, copa de La Tercera, tele de Los 90's con mapa, polaroid de Boedo,
-  cinta de obra en Recoleta). Se sacó la idea de "canal de TV" de los textos.
-  Nueva ilustración en "Los patices". Respaldo en
-  `respaldos/2026-09-26_*_escenas-locales/`.
