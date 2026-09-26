@@ -1,4 +1,6 @@
 node_modules/
-sfx.wav
+__pycache__/
+*.wav
 out/*
 !out/versa-whatsapp-bumper.mp4
+!out/versa-whatsapp-b2b-stories.mp4

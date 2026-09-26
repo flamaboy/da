@@ -1,6 +1,7 @@
 // Renderiza index.html cuadro por cuadro con Playwright y lo codifica con ffmpeg.
-//   node render.js                 -> out/versa-whatsapp-bumper.mp4 (con audio si existe sfx.wav)
-//   node render.js --stills 0.4,2  -> out/still-0.4.png, out/still-2.png
+//   node render.js                                   -> out/versa-whatsapp-bumper.mp4 (index.html + sfx.wav)
+//   node render.js --page b2b.html --audio sfx-b2b.wav --out versa-whatsapp-b2b-stories.mp4
+//   node render.js --page b2b.html --stills 0.4,2    -> out/still-0.4.png, out/still-2.png
 const path = require("path");
 const fs = require("fs");
 const { spawn } = require("child_process");
@@ -15,7 +16,9 @@ const OUT_FPS = 30;
 const W = 1080, H = 1920;
 const FFMPEG = process.env.FFMPEG || "ffmpeg";
 const OUT_DIR = path.join(__dirname, "out");
-const url = "file://" + path.join(__dirname, "index.html") + "?render";
+const arg = (name, def) => { const i = process.argv.indexOf(name); return i > -1 ? process.argv[i + 1] : def; };
+const PAGE = arg("--page", "index.html");
+const url = "file://" + path.join(__dirname, PAGE) + "?render";
 
 (async () => {
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -25,9 +28,9 @@ const url = "file://" + path.join(__dirname, "index.html") + "?render";
   await page.waitForFunction(() => window.READY === true);
   const duration = await page.evaluate(() => window.DURATION);
 
-  const stillsArg = process.argv.indexOf("--stills");
-  if (stillsArg > -1) {
-    for (const t of process.argv[stillsArg + 1].split(",").map(Number)) {
+  const stills = arg("--stills");
+  if (stills) {
+    for (const t of stills.split(",").map(Number)) {
       await page.evaluate((t) => window.seek(t), t);
       await page.screenshot({ path: path.join(OUT_DIR, `still-${t}.png`) });
     }
@@ -35,8 +38,8 @@ const url = "file://" + path.join(__dirname, "index.html") + "?render";
     return;
   }
 
-  const outFile = path.join(OUT_DIR, "versa-whatsapp-bumper.mp4");
-  const wav = path.join(__dirname, "sfx.wav");
+  const outFile = path.join(OUT_DIR, arg("--out", "versa-whatsapp-bumper.mp4"));
+  const wav = path.join(__dirname, arg("--audio", "sfx.wav"));
   const hasAudio = fs.existsSync(wav);
   const args = [
     "-y", "-loglevel", "error",
